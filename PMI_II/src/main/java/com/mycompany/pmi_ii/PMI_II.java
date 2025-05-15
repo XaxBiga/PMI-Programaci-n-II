@@ -4,7 +4,7 @@
 
 package com.mycompany.pmi_ii;
 
-import com.mycompany.pmi_ii.View.MenuInicialView;
+import com.mycompany.pmi_ii.View.MenuInicial;
 
 /**
  *
@@ -13,7 +13,7 @@ import com.mycompany.pmi_ii.View.MenuInicialView;
 public class PMI_II {
 
     public static void main(String[] args) {
-        MenuInicialView ventana = new MenuInicialView();
+        MenuInicial ventana = new MenuInicial();
         ventana.setVisible(true);
     }
 }
