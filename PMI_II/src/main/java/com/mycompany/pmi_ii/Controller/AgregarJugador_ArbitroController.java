@@ -21,12 +21,14 @@ public class AgregarJugador_ArbitroController {
         arbitros = new ArrayList<>();
     }
 
-    public void guardarJugador(String nombre, String apellido, Fecha fecha, String nacionalidad, int goles,int amarilla, int roja) {
+    public void guardarJugador(String nombre, String apellido, Fecha fecha, String nacionalidad,String club, String posicion, int goles,int amarilla, int roja) {
         Jugador nuevoJugador = new Jugador();
         nuevoJugador.SetNombre(nombre);
         nuevoJugador.SetApellido(apellido);
         nuevoJugador.SetFechaNacimiento(fecha);
         nuevoJugador.SetNacionalidad(nacionalidad);
+        nuevoJugador.SetClubActual(club);
+        nuevoJugador.SetPosicion(posicion);
         nuevoJugador.SetGoles(goles);
         nuevoJugador.SetTarjetasAmarillas(amarilla);
         nuevoJugador.SetTarjetasRojas(roja);
