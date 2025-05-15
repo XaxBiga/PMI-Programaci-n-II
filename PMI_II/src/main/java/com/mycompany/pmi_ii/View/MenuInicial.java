@@ -2,6 +2,7 @@ package com.mycompany.pmi_ii.View;
 
 
 import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Model.Fecha;
 import static java.lang.System.exit;
 
 /**
@@ -49,7 +50,7 @@ public class MenuInicial extends javax.swing.JFrame {
         comboboxDia = new javax.swing.JComboBox<>();
         comboboxMes = new javax.swing.JComboBox<>();
         comboboxAnio = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        jSpinnerTarjetaSacadas = new javax.swing.JSpinner();
         lblCargarDatos = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -313,7 +314,7 @@ public class MenuInicial extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSpinnerTarjetaSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
@@ -374,7 +375,7 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSpinnerTarjetaSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboboxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,8 +425,20 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void lblCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCargarDatosActionPerformed
         AgregarJugador_ArbitroController controller = new AgregarJugador_ArbitroController();
-        controller.guardarArbitro(txtNombre.getText(),txtApellido.getText(), (String) comboboxNacionalidad.getSelectedItem(),
-            ALLBITS, (String) comboboxInternacional.getSelectedItem());
+
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String nacionalidad = (String) comboboxNacionalidad.getSelectedItem();
+        String internacional = (String) comboboxInternacional.getSelectedItem();
+
+        int dia = Integer.parseInt((String) comboboxDia.getSelectedItem());
+        int mes = Integer.parseInt((String) comboboxMes.getSelectedItem());
+        int anio = Integer.parseInt((String) comboboxAnio.getSelectedItem());
+        Fecha fecha = new Fecha(dia, mes, anio);
+
+        int tarjetas = (int) jSpinnerTarjetaSacadas.getValue();
+        
+        controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
     }//GEN-LAST:event_lblCargarDatosActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -447,7 +460,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private void jButtonGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarJugadorActionPerformed
         AgregarJugador_ArbitroController controller = new AgregarJugador_ArbitroController();
         controller.guardarJugador(jTextFieldNombreJugador.getText(),
-            jTextFieldApellidoJugador.getText());
+        jTextFieldApellidoJugador.getText());
         jTextFieldNombreJugador.setText("");
         jTextFieldApellidoJugador.setText("");
     }//GEN-LAST:event_jButtonGuardarJugadorActionPerformed
@@ -521,7 +534,7 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinnerTarjetaSacadas;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;

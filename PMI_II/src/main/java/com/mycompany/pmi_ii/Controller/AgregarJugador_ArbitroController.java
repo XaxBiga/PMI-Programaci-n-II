@@ -5,6 +5,7 @@
 package com.mycompany.pmi_ii.Controller;
 
 import com.mycompany.pmi_ii.Model.Arbitro;
+import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class AgregarJugador_ArbitroController {
     private List<Arbitro> arbitros;
     public AgregarJugador_ArbitroController() {
         jugadores = new ArrayList<>();
+        arbitros = new ArrayList<>();
     }
 
     public void guardarJugador(String nombre, String apellido) {
@@ -24,17 +26,16 @@ public class AgregarJugador_ArbitroController {
         jugadores.add(nuevoJugador);
         System.out.println("Jugador guardado: " + nombre + " " + apellido);
     }
-    public void guardarArbitro (String nombre, String apellido,
-                                String nacionalidad,
-                                int tarjetas,
-                                String internacional){
+    public void guardarArbitro(String nombre, String apellido, Fecha fecha,
+                               String nacionalidad, int tarjetas, String internacional) {
         Arbitro nuevoArbitro = new Arbitro();
         nuevoArbitro.SetNombre(nombre);
         nuevoArbitro.SetApellido(apellido);
+        nuevoArbitro.SetFechaNacimiento(fecha);
         nuevoArbitro.SetNacionalidad(nacionalidad);
         nuevoArbitro.SetTarjetasSacadas(tarjetas);
         nuevoArbitro.SetInternacional(internacional);
         arbitros.add(nuevoArbitro);
-        System.out.println("Arbitro guardado: " + nombre + " " + apellido);
+        System.out.println("Árbitro guardado: " + nombre + " " + apellido);
     }
 }
