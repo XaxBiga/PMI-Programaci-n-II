@@ -8,6 +8,8 @@ import com.mycompany.pmi_ii.Model.Jugador;
 import static java.lang.System.exit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.RowFilter; //rama_tomi
+import javax.swing.table.TableRowSorter;//rama_tomi
 
 /**
  *
@@ -15,13 +17,78 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuInicial extends javax.swing.JFrame {
     private AgregarJugador_ArbitroController controller = new AgregarJugador_ArbitroController();
+    private TableRowSorter<DefaultTableModel> sorterJugador;//rama_tomi
+    private TableRowSorter<DefaultTableModel> sorterArbitro;//rama_tomi
 
     /**
      * Creates new form AgregarJugador
      */
     public MenuInicial() {
         initComponents();
+        //crearTablaJugador();//rama_tomi
+        //crearTablaArbitro();//rama_tomi
     }
+    /*private void crearTablaJugador() {
+    String[] columna = {"Nombre", "Apellido", "Nacionalidad", "Club",
+                        "Posicion", "Goles", "Tarjetas Amarillas", 
+                        "Tarjetas Rojas", "Fecha de nacimiento"};
+    DefaultTableModel modelo = new DefaultTableModel(columna, 0); // tabla vacia
+    // no se si es con una lista
+    List<Jugador> jugadores = controlador.getListaJugadores();
+
+    for (Jugador jugador : jugadores) {
+        Object[] fila = {
+            jugador.getNombre(),
+            jugador.getApellido(),
+            jugador.getNacionalidad(),
+            jugador.getClubActual(),
+            jugador.getPosicion(),
+            jugador.getGoles(),
+            jugador.getTarjetasAmarillas(),
+            jugador.getTarjetasRojas(),
+            jugador.getFechanacimiento()
+        };
+        modelo.addRow(fila);
+    }
+
+    jTableJugador.setModel(modelo);
+    jTableJugador.setAutoCreateRowSorter(true);
+    sorterJugador = new TableRowSorter<>(modelo);
+    jTableJugador.setRowSorter(sorterJugador);
+
+    jComboBoxJugador.removeAllItems();
+    for (int i = 0; i < jTableJugador.getColumnCount(); i++) {
+        jComboBoxJugador.addItem(jTableJugador.getColumnName(i));
+    }
+    }private void crearTablaArbitro() {
+    String[] columna = {"Nombre", "Apellido", "Nacionalidad", "Fecha de nacimiento", 
+                        "TarjetasSacadas", "Internacional" };
+    DefaultTableModel modelo = new DefaultTableModel(columna, 0); // tabla vacia
+    // no se si es con una lista
+    List<Arbitro> arbitros = controlador.getListaarbitro();
+
+    for (Arbitro arbitro : arbitros) {
+        Object[] fila = {
+            arbitro.getNombre(),
+            arbitro.getApellido(),
+            arbitro.getNacionalidad(),
+            arbitro.getFechanacimiento(),
+            arbitro.getTarjetasSacadas(),
+            arbitro.getInternacional()
+        };
+        modelo.addRow(fila);
+    }
+
+    jTableArbitro.setModel(modelo);
+    jTableArbitro.setAutoCreateRowSorter(true);
+    sorterArbitro = new TableRowSorter<>(modelo);
+    jTableArbitro.setRowSorter(sorterArbitro);
+
+    jComboBoxArbitro.removeAllItems();
+    for (int i = 0; i < jTableArbitro.getColumnCount(); i++) {
+        jComboBoxArbitro.addItem(jTableArbitro.getColumnName(i));
+    }
+    }*/
     void agregarArbitroTabla() {
     DefaultTableModel dtmArbitro = (DefaultTableModel) jTableArbitro.getModel();
     dtmArbitro.setRowCount(0);
@@ -117,6 +184,12 @@ public class MenuInicial extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableArbitro = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+        jComboBoxJugador = new javax.swing.JComboBox<>();
+        jBuscadorJugador = new javax.swing.JTextField();
+        jComboBoxArbitro = new javax.swing.JComboBox<>();
+        jBuscadorArbitro = new javax.swing.JTextField();
+        jLabelCantidadDeFilasJugador = new javax.swing.JLabel();
+        jLabelCantidadDeFilasArbitro = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
@@ -351,7 +424,7 @@ public class MenuInicial extends javax.swing.JFrame {
                             .addComponent(jLabel18)
                             .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -562,15 +635,71 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Árbitro", jPanel2);
 
+        jComboBoxJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxJugadorActionPerformed(evt);
+            }
+        });
+
+        jBuscadorJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscadorJugadorActionPerformed(evt);
+            }
+        });
+
+        jComboBoxArbitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxArbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxArbitroActionPerformed(evt);
+            }
+        });
+
+        jBuscadorArbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscadorArbitroActionPerformed(evt);
+            }
+        });
+
+        jLabelCantidadDeFilasJugador.setText("jLabel24");
+
+        jLabelCantidadDeFilasArbitro.setText("jLabel24");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCantidadDeFilasArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBuscadorArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(883, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBuscadorArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCantidadDeFilasJugador)
+                .addGap(30, 30, 30)
+                .addComponent(jLabelCantidadDeFilasArbitro)
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta", jPanel3);
@@ -682,6 +811,34 @@ public class MenuInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboboxAnioActionPerformed
 
+    private void jComboBoxJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJugadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxJugadorActionPerformed
+
+    private void jBuscadorJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscadorJugadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscadorJugadorActionPerformed
+
+    private void jComboBoxArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxArbitroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxArbitroActionPerformed
+
+    private void jBuscadorArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscadorArbitroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBuscadorArbitroActionPerformed
+/*
+    private void filtrar(){
+        int columna = jComboBoxJugador.getSelectedIndex(); // columna elegida
+        String texto = jBuscadorJugador.getText();
+        sorterJugador.setRowFilter(RowFilter.regexFilter("(?i)" + texto, columna)); // (?i) ignora mayúsculas
+        jLabelCantidadDeFilasJugador.setText("Filas visibles: " + jTable1.getRowCount());
+    }
+    private void filtrar2(){
+        int columna = jComboBoxArbitro.getSelectedIndex(); // columna elegida
+        String texto = jBuscadorArbitro.getText();
+        sorterArbitro.setRowFilter(RowFilter.regexFilter("(?i)" + texto, columna)); // (?i) ignora mayúsculas
+        jLabelCantidadDeFilasArbitro.setText("Filas visibles: " + jTable1.getRowCount());
+    }*/
     /**
      * @param args the command line arguments
      */
@@ -728,9 +885,13 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboboxMesJugador;
     private javax.swing.JComboBox<String> comboboxNacionalidad;
     private javax.swing.JComboBox<String> comboboxNacionalidadJugador;
+    private javax.swing.JTextField jBuscadorArbitro;
+    private javax.swing.JTextField jBuscadorJugador;
     private javax.swing.JButton jButtonGuardarJugador;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JComboBox<String> jComboBoxArbitro;
     private javax.swing.JComboBox<String> jComboBoxClubJugador;
+    private javax.swing.JComboBox<String> jComboBoxJugador;
     private javax.swing.JComboBox<String> jComboBoxPosicionJugador;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -756,6 +917,8 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCantidadDeFilasArbitro;
+    private javax.swing.JLabel jLabelCantidadDeFilasJugador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
