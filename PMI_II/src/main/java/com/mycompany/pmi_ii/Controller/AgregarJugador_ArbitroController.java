@@ -136,4 +136,7 @@ public class AgregarJugador_ArbitroController {
     public List<Arbitro> getArbitros() {
         return arbitros;
     }
+    public void modificarJugador(Jugador jugadorModificado) {
+        System.out.println("Jugador modificado: " + jugadorModificado.GetNombre());
+    }
 }
