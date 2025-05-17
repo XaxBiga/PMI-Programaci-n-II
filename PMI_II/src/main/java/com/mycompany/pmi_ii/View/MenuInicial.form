@@ -973,28 +973,28 @@
                                   <Component id="jLabelCantidadDeFilasArbitro" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                       <Component id="jComboBoxJugador" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jBuscadorJugador" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabelCantidadDeFilasJugador1" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jBuscadorJugador" min="-2" pref="198" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabelCantidadDeFilasJugador1" min="-2" pref="142" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                       <Component id="jComboBoxArbitro" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jBuscadorArbitro" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabelCantidadDeFilasJugador" min="-2" pref="84" max="-2" attributes="0"/>
+                                      <Component id="jLabelCantidadDeFilasJugador" min="-2" pref="139" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane4" alignment="0" pref="550" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="546" max="32767" attributes="0"/>
+                      <EmptySpace pref="537" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1002,33 +1002,26 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel24" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jComboBoxJugador" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBuscadorJugador" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabelCantidadDeFilasJugador1" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel24" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jComboBoxJugador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBuscadorJugador" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelCantidadDeFilasJugador1" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                              <Component id="jLabelCantidadDeFilasJugador" min="-2" pref="21" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="135" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelCantidadDeFilasArbitro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jBuscadorArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" min="-2" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelCantidadDeFilasJugador" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelCantidadDeFilasArbitro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jComboBoxArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBuscadorArbitro" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="142" max="-2" attributes="0"/>
-                      <EmptySpace pref="294" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1055,6 +1048,7 @@
             <Component class="javax.swing.JTextField" name="jBuscadorJugador">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBuscadorJugadorActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jBuscadorJugadorKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxArbitro">
@@ -1076,6 +1070,7 @@
             <Component class="javax.swing.JTextField" name="jBuscadorArbitro">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBuscadorArbitroActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jBuscadorArbitroKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCantidadDeFilasJugador">
@@ -1144,8 +1139,8 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Internacional" type="java.lang.Object"/>
                         <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                        <Column editable="true" title="Internacional" type="java.lang.Object"/>
                         <Column editable="true" title="Apellido" type="java.lang.Object"/>
                         <Column editable="true" title="Tarjetas Sacadas" type="java.lang.Object"/>
                       </Table>
