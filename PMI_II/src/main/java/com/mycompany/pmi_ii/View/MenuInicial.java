@@ -1,9 +1,9 @@
-package View;
+package com.mycompany.pmi_ii.View;
 
-import Controller.AgregarJugador_ArbitroController;
-import Model.Arbitro;
-import Model.Fecha;
-import Model.Jugador;
+import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Model.Arbitro;
+import com.mycompany.pmi_ii.Model.Fecha;
+import com.mycompany.pmi_ii.Model.Jugador;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
