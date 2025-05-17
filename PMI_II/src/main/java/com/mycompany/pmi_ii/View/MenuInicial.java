@@ -19,7 +19,6 @@ import static java.lang.System.exit;
  */
 public class MenuInicial extends javax.swing.JFrame {
     private AgregarJugador_ArbitroController controller = new AgregarJugador_ArbitroController();
-    private List<Jugador> listaJugadores;
     private TableRowSorter<DefaultTableModel> sorterJugador;
     private TableRowSorter<DefaultTableModel> sorterArbitro;
 
@@ -43,6 +42,15 @@ public class MenuInicial extends javax.swing.JFrame {
                         ventana.setJugador(jugadorSeleccionado);
                         ventana.setController(controller);
                         ventana.setLocationRelativeTo(null);
+
+                        // Agregar listener para actualizar tabla al cerrar
+                        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+                            @Override
+                            public void windowClosed(java.awt.event.WindowEvent e) {
+                                agregarJugadorTabla();  // 👈 Refresca la tabla
+                            }
+                        });
+
                         ventana.setVisible(true);
                     }
                 }
@@ -105,8 +113,8 @@ public class MenuInicial extends javax.swing.JFrame {
         }
     }
     void agregarJugadorTabla() {
-        DefaultTableModel dtmArbitro = (DefaultTableModel) jTableJugador.getModel();
-        dtmArbitro.setRowCount(0);
+        DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
+        dtmJugador.setRowCount(0);
 
         for (Jugador jug : controller.getJugador()) {
             Object[] fila = {
@@ -116,8 +124,13 @@ public class MenuInicial extends javax.swing.JFrame {
                     jug.GetPosicion(),
                     jug.GetNacionalidad(),
             };
-            dtmArbitro.addRow(fila);
+            dtmJugador.addRow(fila);
         }
+
+        jTableJugador.setModel(dtmJugador);
+        jTableJugador.setAutoCreateRowSorter(true);
+        TableRowSorter<DefaultTableModel> sorterJugador = new TableRowSorter<>(dtmJugador);
+        jTableJugador.setRowSorter(sorterJugador);
     }
     /**
      * This method is called from within the constructor to initialize the form.
