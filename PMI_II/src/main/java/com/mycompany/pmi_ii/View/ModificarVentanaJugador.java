@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.pmi_ii.View;
-
-import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
 import com.mycompany.pmi_ii.Model.Jugador;
-import javax.swing.JOptionPane;
+import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+
+import javax.swing.*;
 
 /**
  *
@@ -15,8 +15,6 @@ import javax.swing.JOptionPane;
 public class ModificarVentanaJugador extends javax.swing.JFrame {
     private AgregarJugador_ArbitroController controller;
     private Jugador jugadorActual;
-
-
     /**
      * Creates new form ModificarVentanaJugador
      */
@@ -29,7 +27,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jComboBoxPosicion.setSelectedItem(jugador.GetPosicion());
         jSpinnerGoles.setValue(jugador.GetGoles());
         jSpinnerTarjetaAmarilla.setValue(jugador.GetTarjetasAmarillas());
-    }
+    }   
     public void setController(AgregarJugador_ArbitroController controller) {
         this.controller = controller;
     }
@@ -42,54 +40,61 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonGuardar = new javax.swing.JButton();
         jComboBoxPosicion = new javax.swing.JComboBox<>();
         jSpinnerGoles = new javax.swing.JSpinner();
         jSpinnerTarjetaAmarilla = new javax.swing.JSpinner();
-        jButtonGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBoxPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setText("jButton1");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
             }
         });
 
+        jComboBoxPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonGuardar)
-                    .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(432, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jButtonGuardar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(68, 68, 68)
                 .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonGuardar)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(113, 113, 113))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       if (jugadorActual != null && controller != null) {
+         if (jugadorActual != null && controller != null) {
             jugadorActual.SetPosicion((String) jComboBoxPosicion.getSelectedItem());
             jugadorActual.SetGoles((Integer) jSpinnerGoles.getValue());
             jugadorActual.SetTarjetasAmarillas((Integer) jSpinnerTarjetaAmarilla.getValue());
@@ -98,7 +103,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
             this.dispose();  // cerrás la ventana
-    }
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     /**
