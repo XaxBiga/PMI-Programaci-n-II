@@ -37,20 +37,17 @@ public class MenuInicial extends javax.swing.JFrame {
 
                         List<Jugador> jugadores = controller.getJugador();
                         Jugador jugadorSeleccionado = jugadores.get(filaModelo);
-
                         ModificarVentanaJugador ventana = new ModificarVentanaJugador();
                         ventana.setJugador(jugadorSeleccionado);
                         ventana.setController(controller);
-                        ventana.setLocationRelativeTo(null);
-
-                        // Agregar listener para actualizar tabla al cerrar
+                        ventana.setLocationRelativeTo(null);            
                         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
                             @Override
                             public void windowClosed(java.awt.event.WindowEvent e) {
-                                agregarJugadorTabla();  // 👈 Refresca la tabla
-                            }
-                        });
-
+                                agregarJugadorTabla(); 
+                                crearTablaJugador();
+                                }
+                            });
                         ventana.setVisible(true);
                     }
                 }
