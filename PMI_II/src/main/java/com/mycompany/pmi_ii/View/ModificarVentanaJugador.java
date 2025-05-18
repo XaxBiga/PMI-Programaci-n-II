@@ -5,7 +5,6 @@
 package com.mycompany.pmi_ii.View;
 import com.mycompany.pmi_ii.Model.Jugador;
 import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
-import com.mycompany.pmi_ii.Model.Fecha;
 
 import javax.swing.*;
 
@@ -117,7 +116,6 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         controller.getJugador().remove(jugadorActual);
-        
         this.dispose();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 

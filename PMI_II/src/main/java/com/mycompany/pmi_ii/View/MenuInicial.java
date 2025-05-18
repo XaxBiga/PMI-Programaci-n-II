@@ -861,6 +861,7 @@ public class MenuInicial extends javax.swing.JFrame {
         comboboxDiaJugador.setSelectedIndex(0);
         comboboxMesJugador.setSelectedIndex(0);
         comboboxAnioJugador.setSelectedIndex(0);
+        jComboBoxClubJugador.setSelectedIndex(0);
         comboboxNacionalidadJugador.setSelectedIndex(0);
         jSpinnerGolesJugador.setValue(0);
         jSpinnerAmarillaJugador.setValue(0);
