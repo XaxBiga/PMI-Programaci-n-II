@@ -37,7 +37,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
                         List<Jugador> jugadores = controller.getJugador();
                         Jugador jugadorSeleccionado = jugadores.get(filaModelo);
-                        ModificarVentanaJugador ventana = new ModificarVentanaJugador();
+                        VentanaModi_Eliminar ventana = new VentanaModi_Eliminar();
                         ventana.setJugador(jugadorSeleccionado);
                         ventana.setController(controller);
                         ventana.setLocationRelativeTo(null);            
