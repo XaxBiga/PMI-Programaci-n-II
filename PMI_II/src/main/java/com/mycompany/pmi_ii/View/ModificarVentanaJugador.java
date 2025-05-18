@@ -116,16 +116,8 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        jugadorActual.SetApellido("");
-        jugadorActual.SetNombre("");
-        Fecha nuevaFecha = new Fecha(0,0,0);
-        jugadorActual.SetFechaNacimiento(nuevaFecha);
-        jugadorActual.SetPosicion("");
-        jugadorActual.SetClubActual("");
-        jugadorActual.SetTarjetasAmarillas(0);
-        jugadorActual.SetTarjetasRojas(0);
-        jugadorActual.SetGoles(0);
-        jugadorActual.SetNacionalidad("");
+        controller.getJugador().remove(jugadorActual);
+        
         this.dispose();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
