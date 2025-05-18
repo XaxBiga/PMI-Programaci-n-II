@@ -5,6 +5,7 @@
 package com.mycompany.pmi_ii.View;
 import com.mycompany.pmi_ii.Model.Jugador;
 import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Model.Fecha;
 
 import javax.swing.*;
 
@@ -44,10 +45,11 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jComboBoxPosicion = new javax.swing.JComboBox<>();
         jSpinnerGoles = new javax.swing.JSpinner();
         jSpinnerTarjetaAmarilla = new javax.swing.JSpinner();
+        jButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonGuardar.setText("jButton1");
+        jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
@@ -56,22 +58,30 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
 
         jComboBoxPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(155, 155, 155)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButtonGuardar)))
+                    .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(172, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jButtonGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonEliminar)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +93,9 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButtonGuardar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonEliminar))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -96,12 +108,26 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
             jugadorActual.SetGoles((Integer) jSpinnerGoles.getValue());
             jugadorActual.SetTarjetasAmarillas((Integer) jSpinnerTarjetaAmarilla.getValue());
 
-            controller.modificarJugador(jugadorActual);  // ⬅️ mandás el jugador al controller
+            controller.modificarJugador(jugadorActual); 
 
             JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
             this.dispose();  // cerrás la ventana
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        jugadorActual.SetApellido("");
+        jugadorActual.SetNombre("");
+        Fecha nuevaFecha = new Fecha(0,0,0);
+        jugadorActual.SetFechaNacimiento(nuevaFecha);
+        jugadorActual.SetPosicion("");
+        jugadorActual.SetClubActual("");
+        jugadorActual.SetTarjetasAmarillas(0);
+        jugadorActual.SetTarjetasRojas(0);
+        jugadorActual.SetGoles(0);
+        jugadorActual.SetNacionalidad("");
+        this.dispose();
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +165,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JComboBox<String> jComboBoxPosicion;
     private javax.swing.JSpinner jSpinnerGoles;
