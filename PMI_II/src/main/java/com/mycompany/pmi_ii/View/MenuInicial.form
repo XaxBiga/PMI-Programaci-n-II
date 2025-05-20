@@ -269,7 +269,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="208" max="32767" attributes="0"/>
+                      <EmptySpace pref="285" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -703,7 +703,7 @@
                               <Component id="jScrollPane3" min="-2" pref="303" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="311" max="32767" attributes="0"/>
+                      <EmptySpace pref="376" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -994,7 +994,7 @@
                           <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="537" max="32767" attributes="0"/>
+                      <EmptySpace pref="539" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1003,13 +1003,13 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel24" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jLabel24" alignment="3" pref="25" max="32767" attributes="0"/>
                           <Component id="jComboBoxJugador" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBuscadorJugador" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelCantidadDeFilasJugador1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelCantidadDeFilasJugador" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
@@ -1020,8 +1020,8 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" min="-2" pref="142" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                      <Component id="jScrollPane5" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1032,8 +1032,8 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="por equipo"/>
-                    <StringItem index="1" value="goles"/>
-                    <StringItem index="2" value="tarjetas rojas"/>
+                    <StringItem index="1" value="gol/es"/>
+                    <StringItem index="2" value="expulsion/es"/>
                     <StringItem index="3" value="posicion"/>
                   </StringArray>
                 </Property>
@@ -1090,11 +1090,13 @@
                 <Component class="javax.swing.JTable" name="jTableJugador2">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="6" rowCount="4">
                         <Column editable="true" title="Club" type="java.lang.Object"/>
-                        <Column editable="true" title="Goles" type="java.lang.Object"/>
-                        <Column editable="true" title="Tarjetas Rojas" type="java.lang.Object"/>
+                        <Column editable="true" title="Gol/es" type="java.lang.Object"/>
+                        <Column editable="true" title="Expulsion/es" type="java.lang.Object"/>
                         <Column editable="true" title="Posicion" type="java.lang.Object"/>
+                        <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                        <Column editable="true" title="Apellido" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1115,6 +1117,16 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
                           <Renderer/>
