@@ -66,7 +66,30 @@ public class MenuInicial extends javax.swing.JFrame {
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
     }
-    
+    private void jugadorConMasExpulsiones() {
+        DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
+        dtmJugador.setRowCount(0);
+        Jugador jugadorMax = null;
+        for (Jugador jug : controller.getJugador()) {
+            if (jugadorMax == null || jug.GetTarjetasRojas() > jugadorMax.GetTarjetasRojas()) {
+                jugadorMax = jug;
+            }
+        }
+        if (jugadorMax != null) {
+            Object[] fila = {
+                jugadorMax.GetClubActual(),
+                jugadorMax.GetGoles(),
+                jugadorMax.GetTarjetasRojas(),
+                jugadorMax.GetPosicion(),
+                jugadorMax.GetNombre(),
+                jugadorMax.GetApellido(),
+            };
+            dtmJugador.addRow(fila);
+        }
+        jTableJugador2.setAutoCreateRowSorter(true);
+        sorterJugador = new TableRowSorter<>(dtmJugador);
+        jTableJugador2.setRowSorter(sorterJugador);
+    }
     private void crearTablaArbitro() {
     DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
     modelo.setRowCount(0);
@@ -891,7 +914,6 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBuscadorArbitroActionPerformed
 
     private void jBuscadorJugadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscadorJugadorKeyReleased
-        //crearTablaJugador(); consume mucha memoria
         filtrar();
     }//GEN-LAST:event_jBuscadorJugadorKeyReleased
 
@@ -900,19 +922,27 @@ public class MenuInicial extends javax.swing.JFrame {
         filtrar2();
     }//GEN-LAST:event_jBuscadorArbitroKeyReleased
     
-    private void filtrar(){
-        int columna = jComboBoxJugador.getSelectedIndex(); // columna elegida
-        String texto = jBuscadorJugador.getText();
-        if (columna == 1){
+    private void filtrar() {
+    int columna = jComboBoxJugador.getSelectedIndex(); // índice de opción seleccionada
+    String texto = jBuscadorJugador.getText();
+    switch (columna) {
+        case 1: // Filtrar por goles mayores a cierta cantidad
             try {
-                int minGoles = Integer.parseInt(jBuscadorJugador.getText());
+                int minGoles = Integer.parseInt(texto);
                 tablaJugadorConGolesMayoresA(minGoles);
             } catch (NumberFormatException e) {
-                crearTablaJugador();             }
-        }else{
+                crearTablaJugador(); // Si no se puede convertir, mostrar todo
+            }
+            break;
+        case 2: // Mostrar jugador con más expulsiones
+            jugadorConMasExpulsiones();
+            break;
+        default: // Filtrar por texto usando regex (ej. nombre, club, etc.)
             crearTablaJugador();
-            sorterJugador.setRowFilter(RowFilter.regexFilter("(?i)" + texto, columna)); }// (?i) ignora mayúsculas
-        jLabelCantidadDeFilasJugador1.setText("Filas visibles: " + jTableJugador2.getRowCount());
+            sorterJugador.setRowFilter(RowFilter.regexFilter("(?i)" + texto, columna));
+            break;
+    }
+    jLabelCantidadDeFilasJugador1.setText("Filas visibles: " + jTableJugador2.getRowCount());
     }
     private void filtrar2(){
         int columna = jComboBoxArbitro.getSelectedIndex(); // columna elegida
