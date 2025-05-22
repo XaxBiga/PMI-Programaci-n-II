@@ -138,21 +138,7 @@ public class MenuInicial extends javax.swing.JFrame {
     jTableArbitro2.setRowSorter(sorterArbitro);
     }
     
-    void agregarArbitroTabla() {
-    DefaultTableModel dtmArbitro = (DefaultTableModel) jTableArbitro.getModel();
-    dtmArbitro.setRowCount(0);
-
-    for (Arbitro arb : controller.getArbitros()) {
-        Object[] fila = {
-            arb.GetNombre(),
-            arb.GetApellido(),
-            arb.GetNacionalidad(),
-            arb.GetTarjetasSacadas(),
-            arb.getInternacional()
-        };
-        dtmArbitro.addRow(fila);
-        }
-    }
+    
     void agregarJugadorTabla() {
     DefaultTableModel dtmArbitro = (DefaultTableModel) jTableJugador.getModel();
     dtmArbitro.setRowCount(0);
@@ -853,7 +839,6 @@ public class MenuInicial extends javax.swing.JFrame {
         int tarjetas = (int) jSpinnerTarjetaSacadas.getValue();
         
         controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
-        agregarArbitroTabla();
         crearTablaArbitro();
         txtNombre.setText("");
         txtApellido.setText("");
