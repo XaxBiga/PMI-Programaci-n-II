@@ -843,10 +843,6 @@ public class MenuInicial extends javax.swing.JFrame {
         int goles = (int) jSpinnerGolesJugador.getValue();
         int amarillas = (int) jSpinnerAmarillaJugador.getValue();
         int roja = (int) jSpinnerRojaJugador.getValue();
-        if (amarillas >= 1 && roja == 0){
-            roja += 1;
-            JOptionPane.showMessageDialog(null, "El jugador tenía más de 2 amarillas y se le sumó una tarjeta roja automáticamente.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        }
         String club = (String) jComboBoxClubJugador.getSelectedItem();
         String posicion = (String) jComboBoxPosicionJugador.getSelectedItem();
         

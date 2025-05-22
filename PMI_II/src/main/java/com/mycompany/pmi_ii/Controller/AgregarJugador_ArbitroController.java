@@ -73,6 +73,9 @@ public class AgregarJugador_ArbitroController {
             nuevoJugador.SetTarjetasRojas(roja);
             jugadores.add(nuevoJugador);
             System.out.println("Jugador guardado: " + nombre + " " + apellido );
+            for (Jugador jug : jugadores) {
+                System.out.println(jug.toString());
+            }
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(null, "Error al guardar el árbitro: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.err.println("Error al agregar árbitro: " + e.getMessage());
