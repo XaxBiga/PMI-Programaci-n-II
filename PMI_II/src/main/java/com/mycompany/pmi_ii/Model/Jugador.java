@@ -92,4 +92,5 @@ public class Jugador extends Persona {
     public String toString(){
         return super.toString() + " , Club Actual :"+ClubActual+" , Posicion :"+Posicion+", Goles : "+Goles + "Tarjetas Amarillas :"+TarjetasAmarillas + ", Tarjetas Rojas :"+TarjetasRojas ;
     }
+
 }
