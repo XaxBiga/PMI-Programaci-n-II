@@ -117,26 +117,6 @@ public class MenuInicial extends javax.swing.JFrame {
         sorterJugador = new TableRowSorter<>(dtmJugador);
         jTableJugador2.setRowSorter(sorterJugador);
     }
-    private void crearTablaArbitro() {
-    DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
-    modelo.setRowCount(0);
-    // no se si es con una lista
-
-    for (Arbitro arbitro : controller.getArbitros()) {
-        Object[] fila = {
-            arbitro.GetNombre(),
-            arbitro.getInternacional(),
-            arbitro.GetApellido(),
-            arbitro.GetTarjetasSacadas(),
-        };
-        modelo.addRow(fila);
-    }
-    
-    jTableArbitro2.setModel(modelo);
-    jTableArbitro2.setAutoCreateRowSorter(true);
-    sorterArbitro = new TableRowSorter<>(modelo);
-    jTableArbitro2.setRowSorter(sorterArbitro);
-    }
     
     
     void agregarJugadorTabla() {
@@ -822,32 +802,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void lblCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCargarDatosActionPerformed
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String nacionalidad = (String) comboboxNacionalidad.getSelectedItem();
-        String internacional = (String) comboboxInternacional.getSelectedItem();
-
-        int dia = Integer.parseInt((String) comboboxDia.getSelectedItem());
-        int mes = Integer.parseInt((String) comboboxMes.getSelectedItem());
-        int anio = Integer.parseInt((String) comboboxAnio.getSelectedItem());
-        if (dia == 0 || mes == 0 || anio == 0) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }  
-        Fecha fecha = new Fecha(dia, mes, anio);
-
-        int tarjetas = (int) jSpinnerTarjetaSacadas.getValue();
         
-        controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
-        crearTablaArbitro();
-        txtNombre.setText("");
-        txtApellido.setText("");
-        comboboxNacionalidad.setSelectedIndex(0);
-        comboboxInternacional.setSelectedIndex(0);
-        comboboxDia.setSelectedIndex(0);
-        comboboxMes.setSelectedIndex(0);
-        jSpinnerTarjetaSacadas.setValue(0);
-        comboboxAnio.setSelectedIndex(0);
     }//GEN-LAST:event_lblCargarDatosActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
