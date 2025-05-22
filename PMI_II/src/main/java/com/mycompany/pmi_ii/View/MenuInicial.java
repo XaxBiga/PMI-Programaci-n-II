@@ -120,9 +120,9 @@ public class MenuInicial extends javax.swing.JFrame {
     }
     
     
-    void agregarJugadorTabla() {
-    DefaultTableModel dtmArbitro = (DefaultTableModel) jTableJugador.getModel();
-    dtmArbitro.setRowCount(0);
+    private void agregarJugadorTabla() {
+    DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
+    dtmJugador.setRowCount(0);
 
     for (Jugador jug : controller.getJugador()) {
         Object[] fila = {
@@ -131,11 +131,12 @@ public class MenuInicial extends javax.swing.JFrame {
             jug.GetClubActual(),
             jug.GetPosicion(),
             jug.GetNacionalidad(),
+            jug.GetGoles(), 
             jug.GetTarjetasAmarillas(),
             jug.GetTarjetasRojas(),
-            jug.GetGoles(),            
         };
-        dtmArbitro.addRow(fila);
+        
+        dtmJugador.addRow(fila);
         }
     }
     
@@ -842,9 +843,13 @@ public class MenuInicial extends javax.swing.JFrame {
         int goles = (int) jSpinnerGolesJugador.getValue();
         int amarillas = (int) jSpinnerAmarillaJugador.getValue();
         int roja = (int) jSpinnerRojaJugador.getValue();
+        if (amarillas >= 1 && roja == 0){
+            roja += 1;
+            JOptionPane.showMessageDialog(null, "El jugador tenía más de 2 amarillas y se le sumó una tarjeta roja automáticamente.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
         String club = (String) jComboBoxClubJugador.getSelectedItem();
         String posicion = (String) jComboBoxPosicionJugador.getSelectedItem();
-
+        
         controller.guardarJugador(nombre, apellido, fecha, nacionalidadJugador, club, posicion, goles, amarillas, roja);
         agregarJugadorTabla();
         crearTablaJugador();
