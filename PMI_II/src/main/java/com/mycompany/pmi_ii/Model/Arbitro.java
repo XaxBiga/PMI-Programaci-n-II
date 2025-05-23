@@ -44,6 +44,6 @@ public class Arbitro extends Persona{
     //ToString
     @Override
     public String toString(){
-        return super.toString() + ", Tarjetas Sacadas :"+TarjetasSacadas + " , es Internacional :"+Internacional;
+        return super.toString() + "\n"+TarjetasSacadas + "\n"+Internacional;
     }
 }

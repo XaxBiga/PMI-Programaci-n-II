@@ -90,7 +90,7 @@ public class Jugador extends Persona {
     //ToString
     @Override
     public String toString(){
-        return super.toString() + " , Club Actual :"+ClubActual+" , Posicion :"+Posicion+", Goles : "+Goles + "Tarjetas Amarillas :"+TarjetasAmarillas + ", Tarjetas Rojas :"+TarjetasRojas ;
+        return super.toString() + "\n"+ClubActual+"\n"+Posicion+"\n"+Goles + "\n"+TarjetasAmarillas + "\n"+TarjetasRojas ;
     }
 
 }

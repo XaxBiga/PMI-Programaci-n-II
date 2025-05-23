@@ -4,6 +4,11 @@ import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.System.exit;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -26,6 +31,12 @@ public class MenuInicial extends javax.swing.JFrame {
      */
     public MenuInicial() {
         initComponents();
+        CargarArbitroArchivo();
+        CargarJugadorArchivo();
+        crearTablaArbitro();
+        crearTablaJugador();
+
+        
         configurarTablaJugadorClickListener();
         
     }
@@ -33,7 +44,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jTableJugador.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                if (evt.getClickCount() == 1) {
+                if (evt.getClickCount() == 2) {
                     int filaSeleccionada = jTableJugador.getSelectedRow();
                     if (filaSeleccionada != -1) {
                         int filaModelo = jTableJugador.convertRowIndexToModel(filaSeleccionada);
@@ -56,7 +67,9 @@ public class MenuInicial extends javax.swing.JFrame {
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
-                agregarJugadorTabla(); 
+                CargarArbitroArchivo();
+                CargarJugadorArchivo();
+                agregarJugadorTabla();
                 crearTablaJugador();
             }
         });
@@ -83,10 +96,10 @@ public class MenuInicial extends javax.swing.JFrame {
     jTableJugador2.setAutoCreateRowSorter(true);
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
-    }   
+    }
     private void crearTablaJugador() {
-    DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
-    dtmJugador.setRowCount(0);
+        DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
+        dtmJugador.setRowCount(0);
 
     for (Jugador jug : controller.getJugador()) {
         Object[] fila = {
@@ -96,13 +109,36 @@ public class MenuInicial extends javax.swing.JFrame {
             jug.GetPosicion(),
             jug.GetNombre(),
             jug.GetApellido(),
-            
+
         };
         dtmJugador.addRow(fila);
         }
     jTableJugador2.setAutoCreateRowSorter(true);
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
+    }
+    private void crearTablaArbitro() {
+        CargarArbitroArchivo();
+
+        DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
+        modelo.setRowCount(0);
+
+        for (Arbitro arb : controller.getArbitros()) {
+            Object[] fila = {
+                    arb.GetNombre(),
+                    arb.GetApellido(),
+                    arb.GetNacionalidad(),
+                    arb.GetTarjetasSacadas(),
+                    arb.getInternacional()
+            };
+            modelo.addRow(fila);
+        }
+
+        jTableArbitro2.setAutoCreateRowSorter(true);
+        sorterArbitro = new TableRowSorter<>(modelo);
+        jTableArbitro2.setRowSorter(sorterArbitro);
+
+        jLabelCantidadDeFilasJugador.setText("Filas visibles: " + jTableArbitro2.getRowCount());
     }
     private void jugadorConMasExpulsiones() {
         DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
@@ -128,8 +164,7 @@ public class MenuInicial extends javax.swing.JFrame {
         sorterJugador = new TableRowSorter<>(dtmJugador);
         jTableJugador2.setRowSorter(sorterJugador);
     }
-    
-   
+
     private void agregarJugadorTabla() {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
     dtmJugador.setRowCount(0);
@@ -195,13 +230,12 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        comboboxNacionalidad = new javax.swing.JComboBox<>();
+        comboboxNacionalidadArbitro = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        comboboxDia = new javax.swing.JComboBox<>();
-        comboboxMes = new javax.swing.JComboBox<>();
-        comboboxAnio = new javax.swing.JComboBox<>();
+        comboboxDiaArbitro = new javax.swing.JComboBox<>();
+        comboboxMesArbitro = new javax.swing.JComboBox<>();
+        comboboxAnioArbitro = new javax.swing.JComboBox<>();
         jSpinnerTarjetaSacadas = new javax.swing.JSpinner();
-        lblCargarDatos = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -214,6 +248,8 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableArbitro = new javax.swing.JTable();
+        jButtonSalirArbitro = new javax.swing.JButton();
+        jButtonGuardarArbitro = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxJugador = new javax.swing.JComboBox<>();
         jBuscadorJugador = new javax.swing.JTextField();
@@ -290,10 +326,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTableJugador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Apellido", "Club", "Posición", "Nacionalidad", "Goles", "Amarillas", "Rojas"
@@ -330,7 +363,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabel18.setText("Nacionalidad :");
 
-        comboboxNacionalidadJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "item 1", "item 2" }));
+        comboboxNacionalidadJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "America del Sur", "America del Norte", "Centro America", "Africa", "Asia", "Europa" }));
 
         jLabel19.setText("Goles");
 
@@ -400,7 +433,7 @@ public class MenuInicial extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel18)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel23)
@@ -422,22 +455,21 @@ public class MenuInicial extends javax.swing.JFrame {
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSpinnerAmarillaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(240, 240, 240)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSalir)
-                            .addComponent(jButtonGuardarJugador))))
-                .addContainerGap(250, Short.MAX_VALUE))
+                            .addComponent(jButtonGuardarJugador)
+                            .addComponent(jButtonSalir))))
+                .addContainerGap(475, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -482,12 +514,15 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(jSpinnerRojaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSpinnerRojaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGuardarJugador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSalir)
-                .addContainerGap(431, Short.MAX_VALUE))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jugador", jPanel1);
@@ -496,25 +531,18 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabel8.setText("Nacionalidad :");
 
-        comboboxNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "item 1", "item 2" }));
+        comboboxNacionalidadArbitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "America del Sur", "America del Norte", "Centro America", "Africa", "Asia", "Europa" }));
 
         jLabel9.setText("Cantidad de Tarjetas sacadas");
 
-        comboboxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        comboboxDiaArbitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        comboboxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        comboboxMesArbitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
-        comboboxAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2010", "2009", "2008", "2007", "2006", "2005", "2004" }));
-        comboboxAnio.addActionListener(new java.awt.event.ActionListener() {
+        comboboxAnioArbitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2010", "2009", "2008", "2007", "2006", "2005", "2004" }));
+        comboboxAnioArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboboxAnioActionPerformed(evt);
-            }
-        });
-
-        lblCargarDatos.setText("Cargar Datos");
-        lblCargarDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblCargarDatosActionPerformed(evt);
+                comboboxAnioArbitroActionPerformed(evt);
             }
         });
 
@@ -548,13 +576,10 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTableArbitro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nomrbe", "Apellido", "Nacionalidad", "Tarjetas Sacadas", "Internacional"
+                "Nombre", "Apellido", "Nacionalidad", "Tarjetas Sacadas", "Internacional"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -567,71 +592,91 @@ public class MenuInicial extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableArbitro);
 
+        jButtonSalirArbitro.setText("Salir");
+        jButtonSalirArbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirArbitroActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardarArbitro.setText("Cargar Arbitro");
+        jButtonGuardarArbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarArbitroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtApellido))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNombre))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGap(26, 26, 26)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addGap(12, 12, 12)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtApellido))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtNombre))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addGap(26, 26, 26)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(comboboxDiaArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jLabel5)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(comboboxMesArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel7))
+                                    .addComponent(comboboxAnioArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(comboboxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel5)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(comboboxNacionalidadArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinnerTarjetaSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(comboboxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonGuardarArbitro))))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(comboboxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel7))
-                            .addComponent(comboboxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboboxNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinnerTarjetaSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboboxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCargarDatos))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 661, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jButtonSalirArbitro)))
+                .addContainerGap(666, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -645,9 +690,9 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboboxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboboxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboboxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboboxDiaArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboboxMesArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboboxAnioArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -656,7 +701,7 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(comboboxNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboboxNacionalidadArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -665,12 +710,11 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboboxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCargarDatos))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(693, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonGuardarArbitro)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalirArbitro)
+                .addContainerGap(676, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Árbitro", jPanel2);
@@ -753,50 +797,50 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel24)
-                                .addComponent(jLabelCantidadDeFilasArbitro))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jBuscadorArbitro)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jScrollPane5))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGap(210, 210, 210)
+                            .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelCantidadDeFilasArbitro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBuscadorArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(1076, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(212, 212, 212)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelCantidadDeFilasArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBuscadorArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCantidadDeFilasArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBuscadorArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(236, 236, 236))
+                .addGap(21, 21, 21)
+                .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(442, 442, 442))
         );
 
         jTabbedPane1.addTab("Consulta", jPanel3);
@@ -821,10 +865,6 @@ public class MenuInicial extends javax.swing.JFrame {
         exit(0);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void lblCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblCargarDatosActionPerformed
-        
-    }//GEN-LAST:event_lblCargarDatosActionPerformed
-
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -837,6 +877,8 @@ public class MenuInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldApellidoJugadorActionPerformed
 
+    
+    //Guarda Jugador en la Lista
     private void jButtonGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarJugadorActionPerformed
         String nombre = jTextFieldNombreJugador.getText();
         String apellido = jTextFieldApellidoJugador.getText();
@@ -858,7 +900,9 @@ public class MenuInicial extends javax.swing.JFrame {
         
         controller.guardarJugador(nombre, apellido, fecha, nacionalidadJugador, club, posicion, goles, amarillas, roja);
         agregarJugadorTabla();
+
         crearTablaJugador();
+        GuardarJugadorArchivo();
         jTextFieldNombreJugador.setText("");
         jTextFieldApellidoJugador.setText("");
         comboboxDiaJugador.setSelectedIndex(0);
@@ -880,9 +924,9 @@ public class MenuInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboboxDiaJugadorActionPerformed
 
-    private void comboboxAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxAnioActionPerformed
+    private void comboboxAnioArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxAnioArbitroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboboxAnioActionPerformed
+    }//GEN-LAST:event_comboboxAnioArbitroActionPerformed
 
     private void jComboBoxJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJugadorActionPerformed
         // TODO add your handling code here:
@@ -908,6 +952,189 @@ public class MenuInicial extends javax.swing.JFrame {
         //crearTablaArbitro(); consume mucha memoria
         filtrar2();
     }//GEN-LAST:event_jBuscadorArbitroKeyReleased
+
+    //Precarga de Arbitros - Lee del archivo y pasa a la lista
+    private void CargarArbitroArchivo() {
+        File archivoArbitro = new File("Arbitros.txt");
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(archivoArbitro))) {
+            String nombre, apellido, nacionalidad, internacional;
+            Fecha fecha = new Fecha();
+            int tarjetas;
+
+            while ((nombre = lector.readLine()) != null) {
+                apellido = lector.readLine();
+                fecha.SetDia(Integer.parseInt(lector.readLine()));
+                fecha.SetMes(Integer.parseInt(lector.readLine()));
+                fecha.SetAnio( Integer.parseInt(lector.readLine()));
+                nacionalidad = lector.readLine();
+                tarjetas = Integer.parseInt(lector.readLine());
+                internacional = lector.readLine();
+
+                controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
+
+            }
+            //guardar a la tabla
+            ActualizarTablaArbitro();
+        } catch (IOException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocurrió un error al leer el archivo de Árbitros:\n" + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    //Guarda la Lista de Arbitro en un Archivo - Escribe la lista en un Archivo
+    public void GuardarArbitroArchivo() {
+        File archivoArbitro = new File("Arbitros.txt");
+
+        try (FileWriter escritor = new FileWriter(archivoArbitro, false)) {
+            for (Arbitro arbitro : controller.getArbitros()) {
+                Fecha f = arbitro.GetFechaNacimiento();
+                escritor.write(arbitro.GetNombre() + "\n");
+                escritor.write(arbitro.GetApellido() + "\n");
+                escritor.write(f.GetDia() + "\n");
+                escritor.write(f.GetMes() + "\n");
+                escritor.write(f.GetAnio() + "\n");
+                escritor.write(arbitro.GetNacionalidad() + "\n");
+                escritor.write(arbitro.GetTarjetasSacadas() + "\n");
+                escritor.write(arbitro.getInternacional() + "\n");
+            }
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocurrió un error al escribir el archivo de Árbitros",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //Guarda la Lista de Jugadores en un Archivo - Escribe la lista en un Archivo
+    private void GuardarJugadorArchivo(){
+        File ArchivoJugador = new File("Jugadores");
+        try (FileWriter escritor = new FileWriter(ArchivoJugador, true)) {
+            for (Jugador jug : controller.getJugador()) {
+                Fecha f = jug.GetFechaNacimiento();
+                escritor.write(jug.GetNombre() + "\n");
+                escritor.write(jug.GetApellido() + "\n");
+                escritor.write(f.GetDia() + "\n");
+                escritor.write(f.GetMes() + "\n");
+                escritor.write(f.GetAnio() + "\n");
+                escritor.write(jug.GetClubActual() + "\n");
+                escritor.write(jug.GetPosicion() + "\n");
+                escritor.write(jug.GetNacionalidad() + "\n");
+                escritor.write(jug.GetGoles() + "\n");
+                escritor.write(jug.GetTarjetasAmarillas() + "\n");
+                escritor.write(jug.GetTarjetasRojas() + "\n");
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocurrió un error al escribir el archivo de Jugador",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    //Precarga de Arbitros - Lee del archivo y pasa a la lista
+    private void CargarJugadorArchivo(){
+        File archivo = new File("Jugadores");
+
+        try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
+            String nombre, apellido, nacionalidad, club, posicion;
+            Fecha fecha = new Fecha();
+            int goles, amarillas, rojas;
+
+            while ((nombre = lector.readLine()) != null) {
+                apellido = lector.readLine();
+                fecha.SetDia(Integer.parseInt(lector.readLine()));
+                fecha.SetMes(Integer.parseInt(lector.readLine()));
+                fecha.SetAnio(Integer.parseInt(lector.readLine()));
+                club = lector.readLine();
+                posicion = lector.readLine();
+                nacionalidad = lector.readLine();
+                goles = Integer.parseInt(lector.readLine());
+                amarillas = Integer.parseInt(lector.readLine());
+                rojas = Integer.parseInt(lector.readLine());
+
+
+                controller.guardarJugador(
+                        nombre, apellido, fecha,
+                        nacionalidad, club, posicion,
+                        goles, amarillas, rojas
+                );
+            }
+
+            // actualiza la tabla
+            agregarJugadorTabla();
+
+        } catch (IOException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocurrió un error al leer el archivo de jugadores:\n" + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    //Funciones para cargar en la Tabla Arbitro
+    private void ActualizarTablaArbitro(){
+
+    // Creo el DefaultTableModel que me permite editar la tabla correspondiente
+    DefaultTableModel tabla = (DefaultTableModel) jTableArbitro.getModel();
+
+        tabla.setRowCount(0); //Resetea la Tabla para actualizar
+
+        for(Arbitro aux : controller.getArbitros()){
+
+            Object[] fila = {
+
+            aux.GetNombre(),
+            aux.GetApellido(),
+            aux.GetNacionalidad(),
+            aux.GetTarjetasSacadas(),
+            aux.getInternacional(),
+
+        };
+            tabla.addRow(fila); //agrego una persona a la lista
+        }
+    }
+    private void jButtonGuardarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarArbitroActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        
+        int dia = Integer.parseInt((String) comboboxDiaArbitro.getSelectedItem());
+        int mes = Integer.parseInt((String) comboboxMesArbitro.getSelectedItem());
+        int anio = Integer.parseInt((String) comboboxAnioArbitro.getSelectedItem());
+        if (dia == 0 || mes == 0 || anio == 0) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Fecha fecha = new Fecha(dia,mes,anio);
+        
+        String nacionalidad = (String) comboboxNacionalidadArbitro.getSelectedItem();
+        
+        int tarjetasSacadas = (int) jSpinnerTarjetaSacadas.getValue();
+        
+        String Internacional = (String) comboboxInternacional.getSelectedItem();
+        
+        controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetasSacadas , Internacional);//carga el arbitro a la lista
+        ActualizarTablaArbitro(); //Actualiza la tabla para mostrar al nuevo Arbitro
+        GuardarArbitroArchivo(); //Guarda la modificacion en un archivo Arbitros.txt
+        
+        //resetea los valores luego de la carga
+        txtNombre.setText("");
+        txtApellido.setText("");
+        
+        comboboxDiaArbitro.setSelectedIndex(0);
+        comboboxMesArbitro.setSelectedIndex(0);
+        comboboxAnioArbitro.setSelectedIndex(0);
+        
+        comboboxNacionalidadArbitro.setSelectedIndex(0);
+        
+        jSpinnerTarjetaSacadas.setValue(0);
+        
+        comboboxInternacional.setSelectedIndex(0);
+    }//GEN-LAST:event_jButtonGuardarArbitroActionPerformed
+
+    private void jButtonSalirArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirArbitroActionPerformed
+        // TODO add your handling code here:
+        exit(0);
+    }//GEN-LAST:event_jButtonSalirArbitroActionPerformed
     
     private void filtrar() {
     int columna = jComboBoxJugador.getSelectedIndex(); // índice de opción seleccionada
@@ -918,6 +1145,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 int minGoles = Integer.parseInt(texto);
                 tablaJugadorConGolesMayoresA(minGoles);
             } catch (NumberFormatException e) {
+
                 crearTablaJugador(); // Si no se puede convertir, mostrar todo
             }
             break;
@@ -975,19 +1203,21 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboboxAnio;
+    private javax.swing.JComboBox<String> comboboxAnioArbitro;
     private javax.swing.JComboBox<String> comboboxAnioJugador;
-    private javax.swing.JComboBox<String> comboboxDia;
+    private javax.swing.JComboBox<String> comboboxDiaArbitro;
     private javax.swing.JComboBox<String> comboboxDiaJugador;
     private javax.swing.JComboBox<String> comboboxInternacional;
-    private javax.swing.JComboBox<String> comboboxMes;
+    private javax.swing.JComboBox<String> comboboxMesArbitro;
     private javax.swing.JComboBox<String> comboboxMesJugador;
-    private javax.swing.JComboBox<String> comboboxNacionalidad;
+    private javax.swing.JComboBox<String> comboboxNacionalidadArbitro;
     private javax.swing.JComboBox<String> comboboxNacionalidadJugador;
     private javax.swing.JTextField jBuscadorArbitro;
     private javax.swing.JTextField jBuscadorJugador;
+    private javax.swing.JButton jButtonGuardarArbitro;
     private javax.swing.JButton jButtonGuardarJugador;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonSalirArbitro;
     private javax.swing.JComboBox<String> jComboBoxArbitro;
     private javax.swing.JComboBox<String> jComboBoxClubJugador;
     private javax.swing.JComboBox<String> jComboBoxJugador;
@@ -1040,7 +1270,6 @@ public class MenuInicial extends javax.swing.JFrame {
     private javax.swing.JTable jTableJugador2;
     private javax.swing.JTextField jTextFieldApellidoJugador;
     private javax.swing.JTextField jTextFieldNombreJugador;
-    private javax.swing.JButton lblCargarDatos;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

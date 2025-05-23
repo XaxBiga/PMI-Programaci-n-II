@@ -51,6 +51,6 @@ public class Fecha {
     @Override
     //ToString
     public String toString(){
-        return "Anio :"+Anio+", Mes :"+Mes+", Dia :"+Dia;
+        return Dia+"\n"+Mes+"\n"+Anio;
     }
 }

@@ -64,6 +64,6 @@ public class Persona {
     //ToString
     @Override
     public String toString(){
-        return "Nombre :"+Nombre+", Apellido :"+Apellido+", Nacionalidad :"+Nacionalidad+", Fecha de Nacimiento"+FechaNacimiento.toString();
+        return Nombre+"\n"+Apellido+"\n"+Nacionalidad+"\n"+FechaNacimiento.toString();
     }
 }
