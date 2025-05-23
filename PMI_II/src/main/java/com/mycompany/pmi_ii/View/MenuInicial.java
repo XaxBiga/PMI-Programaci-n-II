@@ -26,6 +26,10 @@ public class MenuInicial extends javax.swing.JFrame {
      */
     public MenuInicial() {
         initComponents();
+        configurarTablaJugadorClickListener();
+        
+    }
+        private void configurarTablaJugadorClickListener() {
         jTableJugador.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -36,24 +40,30 @@ public class MenuInicial extends javax.swing.JFrame {
 
                         List<Jugador> jugadores = controller.getJugador();
                         Jugador jugadorSeleccionado = jugadores.get(filaModelo);
-                        ModificarVentanaJugador ventana = new ModificarVentanaJugador();
-                        ventana.setJugador(jugadorSeleccionado);
-                        ventana.setController(controller);
-                        ventana.setLocationRelativeTo(null);            
-                        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
-                            @Override
-                            public void windowClosed(java.awt.event.WindowEvent e) {
-                                agregarJugadorTabla(); 
-                                crearTablaJugador();
-                                }
-                            });
-                        ventana.setVisible(true);
+
+                        abrirVentanaModificarJugador(jugadorSeleccionado);
                     }
                 }
             }
         });
     }
-    
+    private void abrirVentanaModificarJugador(Jugador jugador) {
+        ModificarVentanaJugador ventana = new ModificarVentanaJugador();
+        ventana.setJugador(jugador);
+        ventana.setController(controller);
+        ventana.setLocationRelativeTo(null);
+
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                agregarJugadorTabla(); 
+                crearTablaJugador();
+            }
+        });
+
+        ventana.setVisible(true);
+    }
+
     private void tablaJugadorConGolesMayoresA(int minGoles) {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
@@ -119,7 +129,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jTableJugador2.setRowSorter(sorterJugador);
     }
     
-    
+   
     private void agregarJugadorTabla() {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
     dtmJugador.setRowCount(0);
