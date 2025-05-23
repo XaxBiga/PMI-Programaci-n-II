@@ -68,9 +68,11 @@ public class MenuInicial extends javax.swing.JFrame {
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
                 CargarArbitroArchivo();
+                ActualizarTablaArbitro();
                 CargarJugadorArchivo();
                 agregarJugadorTabla();
                 crearTablaJugador();
+                crearTablaArbitro();
             }
         });
 
@@ -118,8 +120,6 @@ public class MenuInicial extends javax.swing.JFrame {
     jTableJugador2.setRowSorter(sorterJugador);
     }
     private void crearTablaArbitro() {
-        CargarArbitroArchivo();
-
         DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
         modelo.setRowCount(0);
 
@@ -776,15 +776,23 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTableArbitro2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Internacional", "Apellido", "Tarjetas Sacadas"
+                "Nombre", "Apellido", "Nacionalidad", "Tarjetas Sacadas", "Internacional"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTableArbitro2);
 
         jLabel24.setText("Filtrar jugador por:");
@@ -796,14 +804,11 @@ public class MenuInicial extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addGap(210, 210, 210)
-                            .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(414, 414, 414)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCantidadDeFilasJugador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabelCantidadDeFilasArbitro)
@@ -816,8 +821,9 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1076, Short.MAX_VALUE))
+                        .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1093, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -830,7 +836,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE)
+                .addComponent(jLabelCantidadDeFilasJugador1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCantidadDeFilasArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -949,7 +955,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBuscadorJugadorKeyReleased
 
     private void jBuscadorArbitroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscadorArbitroKeyReleased
-        //crearTablaArbitro(); consume mucha memoria
+        
         filtrar2();
     }//GEN-LAST:event_jBuscadorArbitroKeyReleased
 
@@ -1113,6 +1119,7 @@ public class MenuInicial extends javax.swing.JFrame {
         String Internacional = (String) comboboxInternacional.getSelectedItem();
         
         controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetasSacadas , Internacional);//carga el arbitro a la lista
+        crearTablaArbitro();
         ActualizarTablaArbitro(); //Actualiza la tabla para mostrar al nuevo Arbitro
         GuardarArbitroArchivo(); //Guarda la modificacion en un archivo Arbitros.txt
         
