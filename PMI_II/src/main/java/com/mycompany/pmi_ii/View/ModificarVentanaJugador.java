@@ -102,16 +102,24 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-         if (jugadorActual != null && controller != null) {
-            jugadorActual.SetPosicion((String) jComboBoxPosicion.getSelectedItem());
-            jugadorActual.SetGoles((Integer) jSpinnerGoles.getValue());
-            jugadorActual.SetTarjetasAmarillas((Integer) jSpinnerTarjetaAmarilla.getValue());
-
-            controller.modificarJugador(jugadorActual); 
-
-            JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
-            this.dispose();  // cerrás la ventana
+        // Verifica que el jugador y el controller estén definidos
+        if (jugadorActual == null || controller == null) {
+            JOptionPane.showMessageDialog(this, "No se puede modificar el jugador. Datos inválidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        String posicion = (String) jComboBoxPosicion.getSelectedItem();
+        int goles = (int) jSpinnerGoles.getValue();
+        int tarjetasAmarillas = (int) jSpinnerTarjetaAmarilla.getValue();
+
+        jugadorActual.SetPosicion(posicion);
+        jugadorActual.SetGoles(goles);
+        jugadorActual.SetTarjetasAmarillas(tarjetasAmarillas);
+
+        controller.modificarJugador(jugadorActual);
+
+        JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
+        
+        this.dispose();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
