@@ -74,12 +74,12 @@ public class MenuInicial extends javax.swing.JFrame {
     for (Jugador jug : controller.getJugador()) {
         if (jug.GetGoles() > minGoles) {
             Object[] fila = {
+                jug.GetNombre(),
+                jug.GetApellido(),
+                jug.GetPosicion(),
                 jug.GetClubActual(),
                 jug.GetGoles(),
                 jug.GetTarjetasRojas(),
-                jug.GetPosicion(),
-                jug.GetNombre(),
-                jug.GetApellido(),
             };
             dtmJugador.addRow(fila);
             }
