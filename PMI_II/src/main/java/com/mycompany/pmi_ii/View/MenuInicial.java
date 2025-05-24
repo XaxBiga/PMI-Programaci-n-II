@@ -5,8 +5,6 @@ import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -70,7 +68,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
     }
 
-    private void tablaJugadorConGolesMayoresA(int minGoles) {
+    public void tablaJugadorConGolesMayoresA(int minGoles) {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
     for (Jugador jug : controller.getJugador()) {
@@ -90,19 +88,19 @@ public class MenuInicial extends javax.swing.JFrame {
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
     }
-    private void crearTablaJugador() {
+    public void crearTablaJugador() {
         DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
         dtmJugador.setRowCount(0);
 
     for (Jugador jug : controller.getJugador()) {
         Object[] fila = {
+            jug.GetNombre(),
+            jug.GetApellido(),
+            jug.GetPosicion(),
             jug.GetClubActual(),
             jug.GetGoles(),
             jug.GetTarjetasRojas(),
-            jug.GetPosicion(),
-            jug.GetNombre(),
-            jug.GetApellido(),
-
+    
         };
         dtmJugador.addRow(fila);
         }
@@ -131,7 +129,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jLabelCantidadDeFilasJugador.setText("Filas visibles: " + jTableArbitro2.getRowCount());
     }
-    private void jugadorConMasExpulsiones() {
+    public void jugadorConMasExpulsiones() {
         DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
         dtmJugador.setRowCount(0);
         Jugador jugadorMax = null;
@@ -756,13 +754,20 @@ public class MenuInicial extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Club", "Gol/es", "Expulsion/es", "Posicion", "Nombre", "Apellido"
+                "Nombre", "Apellido", "Posicion", "Club", "Gol/es", "Expulsion/es"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTableJugador2);
         if (jTableJugador2.getColumnModel().getColumnCount() > 0) {
-            jTableJugador2.getColumnModel().getColumn(4).setResizable(false);
-            jTableJugador2.getColumnModel().getColumn(5).setResizable(false);
+            jTableJugador2.getColumnModel().getColumn(0).setResizable(false);
         }
 
         jTableArbitro2.setModel(new javax.swing.table.DefaultTableModel(

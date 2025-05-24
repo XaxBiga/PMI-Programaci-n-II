@@ -74,10 +74,10 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(155, 155, 155)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSpinnerGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerTarjetaAmarilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxPosicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSpinnerGoles)
+                    .addComponent(jSpinnerTarjetaAmarilla))
                 .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -119,10 +119,11 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
 
 
         controller.modificarJugador(jugadorActual);
-        if (menuInicial != null) {
-            menuInicial.GuardarJugadorArchivo();
-            menuInicial.ActualizarTablaJugador();
-        }
+        
+        menuInicial.GuardarJugadorArchivo();
+        menuInicial.ActualizarTablaJugador();
+        menuInicial.crearTablaJugador();
+        
         JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
 
         this.dispose();

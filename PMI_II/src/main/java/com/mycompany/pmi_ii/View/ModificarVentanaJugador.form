@@ -25,10 +25,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSpinnerGoles" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxPosicion" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSpinnerTarjetaAmarilla" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jComboBoxPosicion" max="32767" attributes="0"/>
+                  <Component id="jSpinnerGoles" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jSpinnerTarjetaAmarilla" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="172" max="32767" attributes="0"/>
           </Group>
