@@ -131,6 +131,9 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         controller.getJugador().remove(jugadorActual);
+        menuInicial.GuardarJugadorArchivo();
+        menuInicial.ActualizarTablaJugador();
+        menuInicial.crearTablaJugador();
         this.dispose();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
