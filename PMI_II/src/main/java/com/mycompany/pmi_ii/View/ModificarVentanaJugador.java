@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class ModificarVentanaJugador extends javax.swing.JFrame {
     private AgregarJugador_ArbitroController controller;
+    private MenuInicial menuInicial;
     private Jugador jugadorActual;
     /**
      * Creates new form ModificarVentanaJugador
@@ -30,6 +31,9 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }   
     public void setController(AgregarJugador_ArbitroController controller) {
         this.controller = controller;
+    }
+    public void setMenuInicial(MenuInicial menuInicial) {
+        this.menuInicial = menuInicial;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,13 +113,16 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         String posicion = (String) jComboBoxPosicion.getSelectedItem();
         int goles = (int) jSpinnerGoles.getValue();
         int tarjetasAmarillas = (int) jSpinnerTarjetaAmarilla.getValue();
-
         jugadorActual.SetPosicion(posicion);
         jugadorActual.SetGoles(goles);
         jugadorActual.SetTarjetasAmarillas(tarjetasAmarillas);
 
-        controller.modificarJugador(jugadorActual);
 
+        controller.modificarJugador(jugadorActual);
+        if (menuInicial != null) {
+            menuInicial.GuardarJugadorArchivo();
+            menuInicial.ActualizarTablaJugador();
+        }
         JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
 
         this.dispose();

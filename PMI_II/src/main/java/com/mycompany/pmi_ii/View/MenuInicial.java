@@ -4,6 +4,9 @@ import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -34,11 +37,9 @@ public class MenuInicial extends javax.swing.JFrame {
         CargarArbitroArchivo();
         CargarJugadorArchivo();
         crearTablaArbitro();
-        crearTablaJugador();
+        ActualizarTablaJugador();
 
-        
         configurarTablaJugadorClickListener();
-        
     }
         private void configurarTablaJugadorClickListener() {
         jTableJugador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,21 +63,11 @@ public class MenuInicial extends javax.swing.JFrame {
         ModificarVentanaJugador ventana = new ModificarVentanaJugador();
         ventana.setJugador(jugador);
         ventana.setController(controller);
+        ventana.setMenuInicial(this);
         ventana.setLocationRelativeTo(null);
 
-        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosed(java.awt.event.WindowEvent e) {
-                CargarArbitroArchivo();
-                ActualizarTablaArbitro();
-                CargarJugadorArchivo();
-                agregarJugadorTabla();
-                crearTablaJugador();
-                crearTablaArbitro();
-            }
-        });
-
         ventana.setVisible(true);
+
     }
 
     private void tablaJugadorConGolesMayoresA(int minGoles) {
@@ -872,15 +863,15 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void jTextFieldApellidoJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldApellidoJugadorActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldApellidoJugadorActionPerformed
 
     
@@ -1014,9 +1005,9 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     //Guarda la Lista de Jugadores en un Archivo - Escribe la lista en un Archivo
-    private void GuardarJugadorArchivo(){
+    public void GuardarJugadorArchivo(){
         File ArchivoJugador = new File("Jugadores");
-        try (FileWriter escritor = new FileWriter(ArchivoJugador, true)) {
+        try (FileWriter escritor = new FileWriter(ArchivoJugador, false)) {
             for (Jugador jug : controller.getJugador()) {
                 Fecha f = jug.GetFechaNacimiento();
                 escritor.write(jug.GetNombre() + "\n");
@@ -1067,7 +1058,7 @@ public class MenuInicial extends javax.swing.JFrame {
             }
 
             // actualiza la tabla
-            agregarJugadorTabla();
+            ActualizarTablaJugador();
 
         } catch (IOException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null,
@@ -1096,6 +1087,31 @@ public class MenuInicial extends javax.swing.JFrame {
 
         };
             tabla.addRow(fila); //agrego una persona a la lista
+        }
+    }
+    //Funciones para cargar en la Tabla Arbitro
+    public void ActualizarTablaJugador(){
+
+        // Creo el DefaultTableModel que me permite editar la tabla correspondiente
+        DefaultTableModel tabla = (DefaultTableModel) jTableJugador.getModel();
+
+        tabla.setRowCount(0); //Resetea la Tabla para actualizar
+
+        for(Jugador jug : controller.getJugador()){
+
+            Object[] fila = {
+
+                    jug.GetNombre(),
+                    jug.GetApellido(),
+                    jug.GetClubActual(),
+                    jug.GetPosicion(),
+                    jug.GetNacionalidad(),
+                    jug.GetGoles(),
+                    jug.GetTarjetasAmarillas(),
+                    jug.GetTarjetasRojas(),
+
+            };
+            tabla.addRow(fila); //agrego un Jugador a la lista
         }
     }
     private void jButtonGuardarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarArbitroActionPerformed
