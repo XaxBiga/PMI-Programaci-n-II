@@ -102,7 +102,6 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // Verifica que el jugador y el controller estén definidos
         if (jugadorActual == null || controller == null) {
             JOptionPane.showMessageDialog(this, "No se puede modificar el jugador. Datos inválidos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -118,7 +117,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         controller.modificarJugador(jugadorActual);
 
         JOptionPane.showMessageDialog(this, "Jugador actualizado correctamente.");
-        
+
         this.dispose();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
