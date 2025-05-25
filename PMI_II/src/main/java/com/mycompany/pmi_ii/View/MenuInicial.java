@@ -797,9 +797,6 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(jTableJugador2);
-        if (jTableJugador2.getColumnModel().getColumnCount() > 0) {
-            jTableJugador2.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         jTableArbitro2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
