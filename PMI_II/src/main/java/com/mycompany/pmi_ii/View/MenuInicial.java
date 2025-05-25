@@ -38,6 +38,7 @@ public class MenuInicial extends javax.swing.JFrame {
         ActualizarTablaJugador();
 
         configurarTablaJugadorClickListener();
+        configurarTablaArbitroClickListener();
     }
         private void configurarTablaJugadorClickListener() {
         jTableJugador.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,7 +68,38 @@ public class MenuInicial extends javax.swing.JFrame {
         ventana.setVisible(true);
 
     }
+    private void configurarTablaArbitroClickListener(){
+        
+        jTableArbitro.addMouseListener(new java.awt.event.MouseAdapter() {
+        
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt){
+            
+            if(evt.getClickCount() == 2){
+                int filaSeleccionada = jTableArbitro.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                        int filaModelo = jTableArbitro.convertRowIndexToModel(filaSeleccionada);
 
+                        List<Arbitro> arbitros = controller.getArbitros();
+                        Arbitro arbitroSeleccionado = arbitros.get(filaModelo);
+                        
+                        abrirVentanaModificarArbitro(arbitroSeleccionado);
+                    }
+            
+                }
+            }
+        });
+    }
+    private void abrirVentanaModificarArbitro(Arbitro arbitro){
+    
+        ModificarVentanaArbitro ventana = new ModificarVentanaArbitro();
+        ventana.setArbitro(arbitro);
+        ventana.setController(controller);
+        ventana.setMenuInicial(this);
+        ventana.setLocationRelativeTo(null);
+        
+        ventana.setVisible(true);
+    }
     public void tablaJugadorConGolesMayoresA(int minGoles) {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
@@ -108,7 +140,7 @@ public class MenuInicial extends javax.swing.JFrame {
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
     }
-    private void crearTablaArbitro() {
+    public void crearTablaArbitro() {
         DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
         modelo.setRowCount(0);
 
@@ -1073,7 +1105,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }
 
     //Funciones para cargar en la Tabla Arbitro
-    private void ActualizarTablaArbitro(){
+    public void ActualizarTablaArbitro(){
 
     // Creo el DefaultTableModel que me permite editar la tabla correspondiente
     DefaultTableModel tabla = (DefaultTableModel) jTableArbitro.getModel();
