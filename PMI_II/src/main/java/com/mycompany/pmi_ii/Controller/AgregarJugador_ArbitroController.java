@@ -29,7 +29,7 @@ public class AgregarJugador_ArbitroController {
 
 
 
-        if (cantidadEnEseClub >= 12 ){
+        if (cantidadEnEseClub >= 7 ){
             JOptionPane.showMessageDialog(null,
                     "El club " + club + " ya tiene 7 jugadores. No se pueden agregar más.",
                     "Límite de jugadores",
