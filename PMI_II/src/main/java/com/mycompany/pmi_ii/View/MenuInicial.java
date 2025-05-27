@@ -35,6 +35,7 @@ public class MenuInicial extends javax.swing.JFrame {
         CargarArbitroArchivo();
         CargarJugadorArchivo();
         crearTablaArbitro();
+        crearTablaJugador();
         ActualizarTablaJugador();
 
         configurarTablaJugadorClickListener();
@@ -1201,7 +1202,6 @@ public class MenuInicial extends javax.swing.JFrame {
                 int minGoles = Integer.parseInt(texto);
                 tablaJugadorConGolesMayoresA(minGoles);
             } catch (NumberFormatException e) {
-
                 crearTablaJugador(); // Si no se puede convertir, mostrar todo
             }
             break;
