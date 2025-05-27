@@ -1,6 +1,6 @@
 package com.mycompany.pmi_ii.View;
 
-import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Controller.JugadorController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
@@ -23,7 +23,7 @@ import javax.swing.table.TableRowSorter;//rama_tomi
  * @author Usuario
  */
 public class MenuInicial extends javax.swing.JFrame {
-    private AgregarJugador_ArbitroController controller = new AgregarJugador_ArbitroController();
+    private JugadorController controller = new JugadorController();
     private TableRowSorter<DefaultTableModel> sorterJugador;
     private TableRowSorter<DefaultTableModel> sorterArbitro;
 
@@ -50,7 +50,7 @@ public class MenuInicial extends javax.swing.JFrame {
                     if (filaSeleccionada != -1) {
                         int filaModelo = jTableJugador.convertRowIndexToModel(filaSeleccionada);
 
-                        List<Jugador> jugadores = controller.getJugador();
+                        List<Jugador> jugadores = controller.getJugadores();
                         Jugador jugadorSeleccionado = jugadores.get(filaModelo);
 
                         abrirVentanaModificarJugador(jugadorSeleccionado);
@@ -104,7 +104,7 @@ public class MenuInicial extends javax.swing.JFrame {
     public void tablaJugadorConGolesMayoresA(int minGoles) {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
-    for (Jugador jug : controller.getJugador()) {
+    for (Jugador jug : controller.getJugadores()) {
         if (jug.GetGoles() > minGoles) {
             Object[] fila = {
                 jug.GetClubActual(),
@@ -125,7 +125,7 @@ public class MenuInicial extends javax.swing.JFrame {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
 
-    for (Jugador jug : controller.getJugador()) {
+    for (Jugador jug : controller.getJugadores()) {
         Object[] fila = {
             jug.GetClubActual(),
             jug.GetGoles(),
@@ -165,7 +165,7 @@ public class MenuInicial extends javax.swing.JFrame {
         DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
         dtmJugador.setRowCount(0);
         Jugador jugadorMax = null;
-        for (Jugador jug : controller.getJugador()) {
+        for (Jugador jug : controller.getJugadores()) {
             if (jugadorMax == null || jug.GetTarjetasRojas() > jugadorMax.GetTarjetasRojas()) {
                 jugadorMax = jug;
             }
@@ -190,7 +190,7 @@ public class MenuInicial extends javax.swing.JFrame {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
     dtmJugador.setRowCount(0);
 
-    for (Jugador jug : controller.getJugador()) {
+    for (Jugador jug : controller.getJugadores()) {
         Object[] fila = {
             jug.GetNombre(),
             jug.GetApellido(),
@@ -1042,7 +1042,7 @@ public class MenuInicial extends javax.swing.JFrame {
     public void GuardarJugadorArchivo(){
         File ArchivoJugador = new File("Jugadores");
         try (FileWriter escritor = new FileWriter(ArchivoJugador, false)) {
-            for (Jugador jug : controller.getJugador()) {
+            for (Jugador jug : controller.getJugadores()) {
                 Fecha f = jug.GetFechaNacimiento();
                 escritor.write(jug.GetNombre() + "\n");
                 escritor.write(jug.GetApellido() + "\n");

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.pmi_ii.View;
-import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Controller.JugadorController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import javax.swing.*;
 public class ModificarVentanaArbitro extends javax.swing.JFrame {
 
     private Arbitro arbitroActual;
-    private AgregarJugador_ArbitroController controller;
+    private JugadorController controller;
     private MenuInicial menuInicial;
     
     /**
@@ -33,7 +33,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         jComboBoxInternacional.setSelectedItem(arbitro.getInternacional());
     }
     
-    public void setController(AgregarJugador_ArbitroController Controller){
+    public void setController(JugadorController Controller){
         this.controller = Controller;
     }
     

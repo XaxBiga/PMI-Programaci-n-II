@@ -4,7 +4,7 @@
  */
 package com.mycompany.pmi_ii.View;
 import com.mycompany.pmi_ii.Model.Jugador;
-import com.mycompany.pmi_ii.Controller.AgregarJugador_ArbitroController;
+import com.mycompany.pmi_ii.Controller.JugadorController;
 
 import javax.swing.*;
 
@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author gqiroga
  */
 public class ModificarVentanaJugador extends javax.swing.JFrame {
-    private AgregarJugador_ArbitroController controller;
+    private JugadorController controller;
     private MenuInicial menuInicial;
     private Jugador jugadorActual;
     /**
@@ -29,7 +29,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jSpinnerGoles.setValue(jugador.GetGoles());
         jSpinnerTarjetaAmarilla.setValue(jugador.GetTarjetasAmarillas());
     }   
-    public void setController(AgregarJugador_ArbitroController controller) {
+    public void setController(JugadorController controller) {
         this.controller = controller;
     }
     public void setMenuInicial(MenuInicial menuInicial) {
@@ -150,7 +150,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-        controller.getJugador().remove(jugadorActual);
+        controller.getJugadores().remove(jugadorActual);
         menuInicial.GuardarJugadorArchivo();
         menuInicial.ActualizarTablaJugador();
         menuInicial.crearTablaJugador();
