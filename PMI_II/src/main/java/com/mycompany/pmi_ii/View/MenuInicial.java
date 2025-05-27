@@ -106,12 +106,12 @@ public class MenuInicial extends javax.swing.JFrame {
     for (Jugador jug : controller.getJugador()) {
         if (jug.GetGoles() > minGoles) {
             Object[] fila = {
-                jug.GetNombre(),
-                jug.GetApellido(),
-                jug.GetPosicion(),
                 jug.GetClubActual(),
                 jug.GetGoles(),
                 jug.GetTarjetasRojas(),
+                jug.GetPosicion(),
+                jug.GetNombre(),
+                jug.GetApellido(),
             };
             dtmJugador.addRow(fila);
             }
@@ -119,20 +119,19 @@ public class MenuInicial extends javax.swing.JFrame {
     jTableJugador2.setAutoCreateRowSorter(true);
     sorterJugador = new TableRowSorter<>(dtmJugador);
     jTableJugador2.setRowSorter(sorterJugador);
-    }
+    }   
     public void crearTablaJugador() {
-        DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
-        dtmJugador.setRowCount(0);
+    DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
+    dtmJugador.setRowCount(0);
 
     for (Jugador jug : controller.getJugador()) {
         Object[] fila = {
-            jug.GetNombre(),
-            jug.GetApellido(),
-            jug.GetPosicion(),
             jug.GetClubActual(),
             jug.GetGoles(),
             jug.GetTarjetasRojas(),
-    
+            jug.GetPosicion(),
+            jug.GetNombre(),
+            jug.GetApellido(),
         };
         dtmJugador.addRow(fila);
         }
@@ -186,7 +185,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jTableJugador2.setRowSorter(sorterJugador);
     }
 
-    private void agregarJugadorTabla() {
+    public void agregarJugadorTabla() {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
     dtmJugador.setRowCount(0);
 
@@ -785,7 +784,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Posicion", "Club", "Gol/es", "Expulsion/es"
+                "Club", "Gol/es", "Expulsion/es", "Posicion", "Nombre", "Apellido"
             }
         ) {
             boolean[] canEdit = new boolean [] {
