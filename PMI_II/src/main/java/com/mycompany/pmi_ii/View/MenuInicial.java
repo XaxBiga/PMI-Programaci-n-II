@@ -1,6 +1,7 @@
 package com.mycompany.pmi_ii.View;
 
 import com.mycompany.pmi_ii.Controller.JugadorController;
+import com.mycompany.pmi_ii.Controller.ArbitroController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
@@ -24,6 +25,7 @@ import javax.swing.table.TableRowSorter;//rama_tomi
  */
 public class MenuInicial extends javax.swing.JFrame {
     private JugadorController controller = new JugadorController();
+    private ArbitroController controllerArbitro = new ArbitroController();
     private TableRowSorter<DefaultTableModel> sorterJugador;
     private TableRowSorter<DefaultTableModel> sorterArbitro;
 
@@ -81,7 +83,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 if (filaSeleccionada != -1) {
                         int filaModelo = jTableArbitro.convertRowIndexToModel(filaSeleccionada);
 
-                        List<Arbitro> arbitros = controller.getArbitros();
+                        List<Arbitro> arbitros = controllerArbitro.getArbitros();
                         Arbitro arbitroSeleccionado = arbitros.get(filaModelo);
                         
                         abrirVentanaModificarArbitro(arbitroSeleccionado);
@@ -95,7 +97,7 @@ public class MenuInicial extends javax.swing.JFrame {
     
         ModificarVentanaArbitro ventana = new ModificarVentanaArbitro();
         ventana.setArbitro(arbitro);
-        ventana.setController(controller);
+        ventana.setController(controllerArbitro);
         ventana.setMenuInicial(this);
         ventana.setLocationRelativeTo(null);
         
@@ -144,13 +146,14 @@ public class MenuInicial extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
         modelo.setRowCount(0);
 
-        for (Arbitro arb : controller.getArbitros()) {
+        for (Arbitro arb : controllerArbitro.getArbitros()) {
             Object[] fila = {
                     arb.GetNombre(),
-                    arb.GetApellido(),
+                    arb.getInternacional(),
                     arb.GetNacionalidad(),
                     arb.GetTarjetasSacadas(),
-                    arb.getInternacional()
+                    arb.GetApellido()
+                    
             };
             modelo.addRow(fila);
         }
@@ -688,7 +691,7 @@ public class MenuInicial extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButtonSalirArbitro)))
-                .addContainerGap(666, Short.MAX_VALUE))
+                .addContainerGap(681, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,11 +809,11 @@ public class MenuInicial extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Nacionalidad", "Tarjetas Sacadas", "Internacional"
+                "Nombre", "Internacional", "Nacionalidad", "Tarjetas Sacadas", "Apellido"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -847,7 +850,7 @@ public class MenuInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jBuscadorJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1093, Short.MAX_VALUE))
+                .addContainerGap(1091, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -980,7 +983,6 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBuscadorJugadorKeyReleased
 
     private void jBuscadorArbitroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBuscadorArbitroKeyReleased
-        
         filtrar2();
     }//GEN-LAST:event_jBuscadorArbitroKeyReleased
 
@@ -1002,7 +1004,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 tarjetas = Integer.parseInt(lector.readLine());
                 internacional = lector.readLine();
 
-                controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
+                controllerArbitro.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
 
             }
             //guardar a la tabla
@@ -1019,7 +1021,7 @@ public class MenuInicial extends javax.swing.JFrame {
         File archivoArbitro = new File("Arbitros.txt");
 
         try (FileWriter escritor = new FileWriter(archivoArbitro, false)) {
-            for (Arbitro arbitro : controller.getArbitros()) {
+            for (Arbitro arbitro : controllerArbitro.getArbitros()) {
                 Fecha f = arbitro.GetFechaNacimiento();
                 escritor.write(arbitro.GetNombre() + "\n");
                 escritor.write(arbitro.GetApellido() + "\n");
@@ -1109,7 +1111,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         tabla.setRowCount(0); //Resetea la Tabla para actualizar
 
-        for(Arbitro aux : controller.getArbitros()){
+        for(Arbitro aux : controllerArbitro.getArbitros()){
 
             Object[] fila = {
 
@@ -1131,7 +1133,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         tabla.setRowCount(0); //Resetea la Tabla para actualizar
 
-        for(Jugador jug : controller.getJugador()){
+        for(Jugador jug : controller.getJugadores()){
 
             Object[] fila = {
 
@@ -1168,7 +1170,7 @@ public class MenuInicial extends javax.swing.JFrame {
         
         String Internacional = (String) comboboxInternacional.getSelectedItem();
         
-        controller.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetasSacadas , Internacional);//carga el arbitro a la lista
+        controllerArbitro.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetasSacadas , Internacional);//carga el arbitro a la lista
         crearTablaArbitro();
         ActualizarTablaArbitro(); //Actualiza la tabla para mostrar al nuevo Arbitro
         GuardarArbitroArchivo(); //Guarda la modificacion en un archivo Arbitros.txt
@@ -1216,7 +1218,7 @@ public class MenuInicial extends javax.swing.JFrame {
     jLabelCantidadDeFilasJugador1.setText("Filas visibles: " + jTableJugador2.getRowCount());
     }
     private void filtrar2(){
-        int columna = jComboBoxArbitro.getSelectedIndex(); // columna elegida
+int columna = jComboBoxArbitro.getSelectedIndex(); // columna elegida
         String texto = jBuscadorArbitro.getText();
         sorterArbitro.setRowFilter(RowFilter.regexFilter("(?i)" + texto, columna)); // (?i) ignora mayúsculas
         jLabelCantidadDeFilasJugador.setText("Filas visibles: " + jTableArbitro2.getRowCount());

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.pmi_ii.View;
-import com.mycompany.pmi_ii.Controller.JugadorController;
+import com.mycompany.pmi_ii.Controller.ArbitroController;
 import com.mycompany.pmi_ii.Model.Arbitro;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import javax.swing.*;
 public class ModificarVentanaArbitro extends javax.swing.JFrame {
 
     private Arbitro arbitroActual;
-    private JugadorController controller;
+    private ArbitroController controller;
     private MenuInicial menuInicial;
     
     /**
@@ -33,7 +33,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         jComboBoxInternacional.setSelectedItem(arbitro.getInternacional());
     }
     
-    public void setController(JugadorController Controller){
+    public void setController(ArbitroController Controller){
         this.controller = Controller;
     }
     
@@ -63,6 +63,11 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         jLabel2.setText("Es Internacional : ");
 
         jComboBoxInternacional.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        jComboBoxInternacional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxInternacionalActionPerformed(evt);
+            }
+        });
 
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +153,10 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         menuInicial.crearTablaArbitro();
         this.dispose();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jComboBoxInternacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInternacionalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxInternacionalActionPerformed
 
     /**
      * @param args the command line arguments

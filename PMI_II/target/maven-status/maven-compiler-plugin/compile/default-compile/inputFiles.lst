@@ -1,10 +1,10 @@
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/JugadorController.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/ModificarJugador_ArbitroController.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Arbitro.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Fecha.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Jugador.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Persona.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/PMI_II.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/MenuInicial.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaArbitro.java
-/home/gqiroga/Descargas/PMI-Programaci-n-II-20250523T120403Z-1-001/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaJugador.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/ArbitroController.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/JugadorController.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Arbitro.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Fecha.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Jugador.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Persona.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/PMI_II.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/MenuInicial.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaArbitro.java
+/media/gqiroga/GyP1/PMI Controlador Correjido-20250601T214716Z-1-001/PMI Controlador Correjido/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaJugador.java
