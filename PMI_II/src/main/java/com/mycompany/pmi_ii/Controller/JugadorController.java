@@ -13,25 +13,46 @@ public class JugadorController {
     public JugadorController() {
         jugadores = new ArrayList<>();
     }
-
-    public void guardarJugador(String nombre, String apellido, Fecha fecha, String nacionalidad,
+    public boolean guardarJugador(String nombre, String apellido, Fecha fecha, String nacionalidad,
                                 String club, String posicion, int goles, int amarilla, int roja) {
+
+        if (nombre == null || nombre.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (apellido == null || apellido.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (fecha == null || fecha.Dia == 0 || fecha.Mes == 0 || fecha.Anio == 0) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (nacionalidad == null || nacionalidad.equals("-") || nacionalidad.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una nacionalidad.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        if (club == null || club.equals("-") || club.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un club.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         if (contarJugadoresEnClub(club) >= 7) {
             JOptionPane.showMessageDialog(null,
                 "El club " + club + " ya tiene 7 jugadores. No se pueden agregar más.",
                 "Límite de jugadores", JOptionPane.WARNING_MESSAGE);
-            return;
+            return false;
         }
 
-        if (nombre == null || nombre.trim().isEmpty() ||
-            apellido == null || apellido.trim().isEmpty() ||
-            nacionalidad.equals("-") || club.equals("-") || posicion.equals("-")) {
-            JOptionPane.showMessageDialog(null,
-                "Todos los campos deben estar completos y válidos.",
-                "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        if (posicion == null || posicion.equals("-") || posicion.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una posición.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
-
+        
         try {
             Jugador nuevoJugador = new Jugador();
             nuevoJugador.SetNombre(nombre);
@@ -44,14 +65,16 @@ public class JugadorController {
             nuevoJugador.SetTarjetasAmarillas(amarilla);
             nuevoJugador.SetTarjetasRojas(roja);
             jugadores.add(nuevoJugador);
-
             System.out.println("Jugador guardado: " + nombre + " " + apellido);
+            return true;
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null,
                 "Error al guardar el jugador: " + e.getMessage(),
                 "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
+
 
     public int contarJugadoresEnClub(String club) {
         int contador = 0;
