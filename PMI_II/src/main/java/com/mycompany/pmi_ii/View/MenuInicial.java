@@ -938,6 +938,7 @@ public class MenuInicial extends javax.swing.JFrame {
         int roja = (int) jSpinnerRojaJugador.getValue();
         String club = (String) jComboBoxClubJugador.getSelectedItem();
         String posicion = (String) jComboBoxPosicionJugador.getSelectedItem();
+        
         boolean exito = controller.guardarJugador(nombre, apellido, fecha, nacionalidadJugador, club, posicion, goles, amarillas, roja);
         
         agregarJugadorTabla();

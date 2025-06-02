@@ -150,6 +150,13 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (controller.contarJugadoresEnClub(jugadorActual.ClubActual) <= 5) {
+            JOptionPane.showMessageDialog(this,
+                "No se puede eliminar el jugador porque el club " + jugadorActual.ClubActual + " debe tener al menos 5 jugadores.",
+                "Cantidad mínima de jugadores",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         controller.getJugadores().remove(jugadorActual);
         menuInicial.GuardarJugadorArchivo();
         menuInicial.ActualizarTablaJugador();
