@@ -22,8 +22,14 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
      */
     public ModificarVentanaArbitro() {
         initComponents();
+        configurarSpinner();
     }
 
+    //control para ingreso de numeros negativos :
+    public void configurarSpinner(){
+        jSpinnerTarjetasSacadas.setModel(new javax.swing.SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
+    }
+    
     public void setArbitro(Arbitro arbitro){
         
         this.arbitroActual = arbitro;
@@ -92,11 +98,11 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinnerTarjetasSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinnerTarjetasSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(133, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jButtonGuardar)
@@ -107,15 +113,15 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jSpinnerTarjetasSacadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxInternacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonEliminar))
@@ -147,11 +153,16 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        
+        int verificador = JOptionPane.showConfirmDialog(this, "Estas seguro que quieres eliminar el Arbitro :", "Verificacion ", JOptionPane.YES_NO_OPTION) ;
+        
+        if(verificador == JOptionPane.YES_OPTION){
         controller.getArbitros().remove(arbitroActual);
         menuInicial.GuardarArbitroArchivo();
         menuInicial.ActualizarTablaArbitro();
         menuInicial.crearTablaArbitro();
         this.dispose();
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jComboBoxInternacionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxInternacionalActionPerformed

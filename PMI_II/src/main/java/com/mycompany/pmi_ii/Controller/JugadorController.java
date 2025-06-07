@@ -25,7 +25,11 @@ public class JugadorController {
             JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
+        //Control para Jugador Repetido
+        if (JugadorRepetido(nombre,apellido) == true){
+            JOptionPane.showMessageDialog(null, "El Jugador Ingresado ya Existe en la Lista.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         if (fecha == null || fecha.Dia == 0 || fecha.Mes == 0 || fecha.Anio == 0) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -75,7 +79,20 @@ public class JugadorController {
         }
     }
 
-
+    //Metodo para Verificar si el Jugador Ya esta en la lista
+    public boolean JugadorRepetido(String nombre , String apellido){
+    
+        for(Jugador aux : jugadores){
+            
+            if(aux.GetNombre().equalsIgnoreCase(nombre) && aux.GetApellido().equalsIgnoreCase(apellido)){
+                
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
     public int contarJugadoresEnClub(String club) {
         int contador = 0;
         for (Jugador j : jugadores) {

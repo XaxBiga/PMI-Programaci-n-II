@@ -21,7 +21,16 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
      */
     public ModificarVentanaJugador() {
         initComponents();
+        controlSpinners();
     }
+    
+    //Control para evitar Numeros negativos en los Spinners
+    public void controlSpinners(){
+        
+        jSpinnerGoles.setModel(new javax.swing.SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
+        jSpinnerTarjetaAmarilla.setModel(new javax.swing.SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
+    }
+    
     public void setJugador(Jugador jugador) {
         this.jugadorActual = jugador;
         // Mostrar sus datos actuales en los campos
@@ -150,6 +159,11 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        
+        int verificador = JOptionPane.showConfirmDialog(this, "Estas seguro que quieres eliminar el Jugador :", "Verificacion ", JOptionPane.YES_NO_OPTION) ;
+        
+        if(verificador == JOptionPane.YES_OPTION){
+        
         if (controller.contarJugadoresEnClub(jugadorActual.ClubActual) <= 5) {
             JOptionPane.showMessageDialog(this,
                 "No se puede eliminar el jugador porque el club " + jugadorActual.ClubActual + " debe tener al menos 5 jugadores.",
@@ -157,11 +171,14 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
                 JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
         controller.getJugadores().remove(jugadorActual);
         menuInicial.GuardarJugadorArchivo();
         menuInicial.ActualizarTablaJugador();
         menuInicial.crearTablaJugador();
         this.dispose();
+        
+    }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
