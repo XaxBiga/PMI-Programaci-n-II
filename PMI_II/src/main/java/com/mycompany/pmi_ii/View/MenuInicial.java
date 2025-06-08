@@ -990,7 +990,7 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_comboboxAnioArbitroActionPerformed
 
     private void jComboBoxJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJugadorActionPerformed
-        // TODO add your handling code here:
+        filtrar();
     }//GEN-LAST:event_jComboBoxJugadorActionPerformed
 
     private void jBuscadorJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscadorJugadorActionPerformed
