@@ -359,13 +359,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel1.add(jTextFieldApellidoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 173, -1));
 
         jButtonGuardarJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jButtonGuardarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/archivo-sav.png"))); // NOI18N
         jButtonGuardarJugador.setText("Cargar Jugador");
         jButtonGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarJugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 130, 30));
+        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 190, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
