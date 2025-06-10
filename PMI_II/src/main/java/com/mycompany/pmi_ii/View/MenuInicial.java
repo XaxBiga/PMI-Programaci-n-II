@@ -936,6 +936,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
+        jButton1.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
