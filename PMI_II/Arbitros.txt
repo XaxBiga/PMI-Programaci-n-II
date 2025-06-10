@@ -1,8 +1,40 @@
 Franco
-Alcatraz
-6
+Alcaraz
+12
 4
-2009
-America del Sur
-4
+2007
+Centro America
+1
 Si
+David
+Wilson
+8
+6
+2010
+Europa
+105
+Si
+Fatima
+Al-Mansoori
+14
+2
+2010
+Asia
+70
+No
+Elena
+Petrova
+25
+5
+2010
+Asia
+90
+Si
+Michael
+Johnson
+10
+11
+2010
+America del Norte
+95
+No
