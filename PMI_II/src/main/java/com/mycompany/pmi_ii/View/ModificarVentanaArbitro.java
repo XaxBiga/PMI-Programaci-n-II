@@ -97,6 +97,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         jSpinnerTarjetasSacadas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Es Internacional : ");
 
         jComboBoxInternacional.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -109,6 +110,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setText("Tarjetas Sacadas :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -236,7 +236,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextFieldNombreJugador = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         comboboxDiaJugador = new javax.swing.JComboBox<>();
         comboboxMesJugador = new javax.swing.JComboBox<>();
@@ -245,20 +244,21 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        comboboxNacionalidadJugador = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jSpinnerGolesJugador = new javax.swing.JSpinner();
-        jSpinnerAmarillaJugador = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBoxClubJugador = new javax.swing.JComboBox<>();
-        jComboBoxPosicionJugador = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jSpinnerRojaJugador = new javax.swing.JSpinner();
+        jTextFieldNombreJugador = new javax.swing.JTextField();
+        jSpinnerAmarillaJugador = new javax.swing.JSpinner();
+        comboboxNacionalidadJugador = new javax.swing.JComboBox<>();
+        jComboBoxClubJugador = new javax.swing.JComboBox<>();
+        jComboBoxPosicionJugador = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableJugador = new javax.swing.JTable();
@@ -337,6 +337,8 @@ public class MenuInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonSalir.setBackground(new java.awt.Color(204, 204, 204));
@@ -357,7 +359,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 jTextFieldApellidoJugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldApellidoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 173, -1));
+        jPanel1.add(jTextFieldApellidoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 179, 170, 20));
 
         jButtonGuardarJugador.setBackground(new java.awt.Color(0, 153, 153));
         jButtonGuardarJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -368,34 +370,25 @@ public class MenuInicial extends javax.swing.JFrame {
                 jButtonGuardarJugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 190, 30));
+        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 180, 30));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
         jLabel13.setText("Agregar Jugador");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Nombre");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 80, 20));
 
         jLabel15.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel15.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Apellido");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jTextFieldNombreJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jTextFieldNombreJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
-        jTextFieldNombreJugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreJugadorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextFieldNombreJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 173, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Fecha nacimiento");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
@@ -420,42 +413,37 @@ public class MenuInicial extends javax.swing.JFrame {
         comboboxAnioJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
         jPanel1.add(comboboxAnioJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Dia");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Mes");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Año");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Nacionalidad ");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
 
-        comboboxNacionalidadJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        comboboxNacionalidadJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "America del Sur", "America del Norte", "Centro America", "Africa", "Asia", "Europa" }));
-        comboboxNacionalidadJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
-        jPanel1.add(comboboxNacionalidadJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 162, -1));
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Goles");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Tarjeta Amarilla");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Tarjeta Roja");
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
@@ -464,43 +452,20 @@ public class MenuInicial extends javax.swing.JFrame {
         jSpinnerGolesJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         jPanel1.add(jSpinnerGolesJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 98, -1));
 
-        jSpinnerAmarillaJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jSpinnerAmarillaJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jSpinnerAmarillaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 88, -1));
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Club");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Posición");
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
-        jComboBoxClubJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jComboBoxClubJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Boca Juniors", "River Plate", "Racing Club", "San Lorenzo", "Independiente", "Huracán", "Talleres", "Estudiantes de La Plata", "Newell's Old Boys", "Rosario Central" }));
-        jComboBoxClubJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
-        jComboBoxClubJugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxClubJugadorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jComboBoxClubJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
-
-        jComboBoxPosicionJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jComboBoxPosicionJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Arquero", "Defensor", "MedioCampista", "Delantero" }));
-        jComboBoxPosicionJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
-        jComboBoxPosicionJugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxPosicionJugadorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jComboBoxPosicionJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, -1, -1));
-
+        jLabel25.setBackground(new java.awt.Color(0, 102, 102));
         jLabel25.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel25.setText("Doble clic sobre un jugador para modificar o eliminar");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, 418, 55));
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 560, 390, 40));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 102, 102));
@@ -513,19 +478,82 @@ public class MenuInicial extends javax.swing.JFrame {
         jSpinnerRojaJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jSpinnerRojaJugador.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
 
+        jTextFieldNombreJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jTextFieldNombreJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        jTextFieldNombreJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreJugadorActionPerformed(evt);
+            }
+        });
+
+        jSpinnerAmarillaJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jSpinnerAmarillaJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+
+        comboboxNacionalidadJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        comboboxNacionalidadJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "America del Sur", "America del Norte", "Centro America", "Africa", "Asia", "Europa" }));
+        comboboxNacionalidadJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+
+        jComboBoxClubJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jComboBoxClubJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Boca Juniors", "River Plate", "Racing Club", "San Lorenzo", "Independiente", "Huracán", "Talleres", "Estudiantes de La Plata", "Newell's Old Boys", "Rosario Central" }));
+        jComboBoxClubJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+        jComboBoxClubJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClubJugadorActionPerformed(evt);
+            }
+        });
+
+        jComboBoxPosicionJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jComboBoxPosicionJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Arquero", "Defensor", "MedioCampista", "Delantero" }));
+        jComboBoxPosicionJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
+        jComboBoxPosicionJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPosicionJugadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerAmarillaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(jSpinnerRojaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addComponent(jTextFieldNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 51, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jSpinnerRojaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jComboBoxPosicionJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(405, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(jTextFieldNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxPosicionJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jSpinnerAmarillaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jSpinnerRojaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -575,13 +603,14 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 960, 410));
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(0, 102, 102));
         jLabel28.setText("Tabla de Jugadores");
         jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
 
         jTabbedPane1.addTab("Jugador", jPanel1);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
