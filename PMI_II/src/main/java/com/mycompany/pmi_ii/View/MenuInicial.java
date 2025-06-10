@@ -344,13 +344,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonSalir.setBackground(new java.awt.Color(204, 204, 204));
         jButtonSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonSalir.setForeground(new java.awt.Color(102, 102, 102));
+        jButtonSalir.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 90, 30));
+        jPanel1.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 100, 30));
 
         jTextFieldApellidoJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jTextFieldApellidoJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
@@ -644,13 +645,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonSalirArbitro.setBackground(new java.awt.Color(204, 204, 204));
         jButtonSalirArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonSalirArbitro.setForeground(new java.awt.Color(102, 102, 102));
+        jButtonSalirArbitro.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
         jButtonSalirArbitro.setText("Salir");
         jButtonSalirArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirArbitroActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSalirArbitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 80, 30));
+        jPanel2.add(jButtonSalirArbitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 100, 30));
 
         jButtonGuardarArbitro.setBackground(new java.awt.Color(0, 153, 153));
         jButtonGuardarArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
