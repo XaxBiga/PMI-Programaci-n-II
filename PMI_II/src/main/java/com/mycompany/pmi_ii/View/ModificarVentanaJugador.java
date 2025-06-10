@@ -68,7 +68,6 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonGuardar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Save.png"))); // NOI18N
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +78,6 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 120, 40));
 
         jButtonEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButtonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/remove.png"))); // NOI18N
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {

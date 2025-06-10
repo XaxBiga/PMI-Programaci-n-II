@@ -340,7 +340,7 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Cancelar.png"))); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,7 +359,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel1.add(jTextFieldApellidoJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 173, -1));
 
         jButtonGuardarJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButtonGuardarJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/archivo-sav.png"))); // NOI18N
         jButtonGuardarJugador.setText("Cargar Jugador");
         jButtonGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -598,7 +597,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 735, 303));
 
         jButtonSalirArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButtonSalirArbitro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Cancelar.png"))); // NOI18N
         jButtonSalirArbitro.setText("Salir");
         jButtonSalirArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -608,7 +606,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jPanel2.add(jButtonSalirArbitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
 
         jButtonGuardarArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButtonGuardarArbitro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/archivo-sav.png"))); // NOI18N
         jButtonGuardarArbitro.setText("Cargar Arbitro");
         jButtonGuardarArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

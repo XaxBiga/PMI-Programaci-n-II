@@ -104,7 +104,7 @@
                   <Font name="Segoe UI Black" size="12" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/Cancelar.png"/>
+                  <Image iconType="2" name="/home/gqiroga/Documentos/Programaci&#xf3;n II UNSL/PMI 09-06-2025/PMI V2.2 Dise&#xf1;o-20250609T230149Z-1-001/PMI V2.2 Dise&#xf1;o/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
@@ -146,9 +146,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="12" style="0"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/archivo-sav.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cargar Jugador"/>
               </Properties>
@@ -992,9 +989,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="12" style="0"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/Cancelar.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
@@ -1010,9 +1004,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Black" size="12" style="0"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Image/archivo-sav.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cargar Arbitro"/>
               </Properties>
