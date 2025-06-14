@@ -84,13 +84,13 @@ public class JugadorController {
     public int get_TarjetasAmarillasJug(){
         return jugadorActual.GetTarjetasAmarillas();
     }
+    
     public int get_TarjetasRojasJug(){
         return jugadorActual.GetTarjetasRojas();
     }
     public List<Jugador> getListaJugadores() {
         return listaJugadores;
     }
-
     //Metodo para Verificar si el Jugador Ya esta en la lista
     public boolean JugadorRepetido(String nombre , String apellido){
     
