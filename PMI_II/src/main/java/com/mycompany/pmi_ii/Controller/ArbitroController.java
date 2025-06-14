@@ -8,6 +8,7 @@ import com.mycompany.pmi_ii.Model.Arbitro;
 import com.mycompany.pmi_ii.Model.Fecha;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.JOptionPane;
 /**
@@ -16,65 +17,74 @@ import javax.swing.JOptionPane;
  */
 public class ArbitroController {
     
-    private List<Arbitro> arbitros;
+    private final List<Arbitro> listaArbitros;
+    private Arbitro arbitro;
+    
+    //constructores
     
     public ArbitroController(){
-        arbitros = new ArrayList<>();
+        this.listaArbitros = new ArrayList<>();
     }
-    
-    public boolean guardarArbitro(String nombre, String apellido, Fecha fecha,
-                               String nacionalidad, int tarjetas, String internacional) {
-
-        //CONTROL DE ERRORES
-        if (nombre == null || nombre.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (apellido == null || apellido.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        //Control de Arbitro Repetido
-        if(ArbitroRepetido(nombre,apellido) == true){
-            JOptionPane.showMessageDialog(null, "El Arbitro Ingresa ya Existe en la Lista.", "Error", JOptionPane.ERROR_MESSAGE);
-           return false; 
-        }
-        if (nacionalidad.equals("-")){
-            JOptionPane.showMessageDialog(null, "La nacionalidad no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (internacional.equals("-")){
-            JOptionPane.showMessageDialog(null, "La casilla internacional no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (arbitros == null) {
-            arbitros = new ArrayList<>();
-        }
-        try {
-            Arbitro nuevoArbitro = new Arbitro();
-            nuevoArbitro.SetNombre(nombre);
-            nuevoArbitro.SetApellido(apellido);
-            nuevoArbitro.SetFechaNacimiento(fecha);
-            nuevoArbitro.SetNacionalidad(nacionalidad);
-            nuevoArbitro.SetTarjetasSacadas(tarjetas);
-            nuevoArbitro.SetInternacional(internacional);
-
-            arbitros.add(nuevoArbitro);
-            System.out.println("Árbitro guardado: " + nombre + " " + apellido);
-            return true;
-
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar el árbitro: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            System.err.println("Error al agregar árbitro: " + e.getMessage());
-            return false;
-        }
-
+    // Constructor para un arbitro específico
+    public ArbitroController(Arbitro arbitro) {
+        this.arbitro = arbitro;
+        this.listaArbitros = null;
+    }
+    public void initArbitro(){
+        this.arbitro = new Arbitro();
+    }
+    public Arbitro getArbitro(){
+        return arbitro;
+    }
+    //Setter
+    public void setListaArbitros(Arbitro arb){
+        listaArbitros.add(arb);
+    }
+    public void setNombreArbitro(String nombre){
+        this.arbitro.SetNombre(nombre);
+    }
+    public void setApellidoArbitro(String apellido){
+        this.arbitro.SetApellido(apellido);
+    }
+    public void setFechaNacimientoArbitro(int dia, int mes, int año){
+        this.arbitro.SetFechaNacimiento(new Fecha(dia, mes, año));
+    }
+    public void setNacionalidadArbitro(String nacionalidad){
+        this.arbitro.SetNacionalidad(nacionalidad);
+    }
+    public void setTarjetasSacadasArbitro(int tarjetas){
+        this.arbitro.SetTarjetasSacadas(tarjetas);
+    }
+    public void setInternacionlArbitro(String internacional){
+        this.arbitro.SetInternacional(internacional);
+    }
+    //Getter
+    public String getNombreArbitro(){
+        return arbitro.GetNombre();
+    }
+    public String getApellidoArbitro(){
+        return arbitro.GetApellido();
+    }
+    public Fecha getFechaNacimientoArbitro(){
+        return arbitro.GetFechaNacimiento();
+    }
+    public String getNacionalidad(){
+        return arbitro.GetNacionalidad();
+    }
+    public int getTarjetasSacadasArbitro(){
+        return arbitro.GetTarjetasSacadas();
+    }
+    public String getInternacionlArbitro(){
+        return arbitro.getInternacional();
+    }
+    public List<Arbitro> getListaArbitros(){
+        return listaArbitros;
     }
     
     //Metodo para buscar si El Arbitro Ingresado ya esta en la lista
     public boolean ArbitroRepetido(String nombre,String apellido){
         
-        for(Arbitro aux : arbitros){
+        for(Arbitro aux : listaArbitros){
             
             if(aux.GetNombre().equalsIgnoreCase(nombre) && aux.GetApellido().equalsIgnoreCase(apellido)){
                 
@@ -84,12 +94,6 @@ public class ArbitroController {
         
         return false;
     }
-    
-    public List<Arbitro> getArbitros() {
-        return arbitros;
-    }
-    
-    
      public void modificarArbitro(Arbitro arbitroModificado){
         System.out.println("Arbitro Modificado :"+ arbitroModificado.GetNombre());
     }

@@ -90,7 +90,7 @@ public class MenuInicial extends javax.swing.JFrame {
                 if (filaSeleccionada != -1) {
                         int filaModelo = jTableArbitro.convertRowIndexToModel(filaSeleccionada);
 
-                        List<Arbitro> arbitros = controllerArbitro.getArbitros();
+                        List<Arbitro> arbitros = controllerArbitro.getListaArbitros();
                         Arbitro arbitroSeleccionado = arbitros.get(filaModelo);
                         
                         abrirVentanaModificarArbitro(arbitroSeleccionado);
@@ -153,7 +153,7 @@ public class MenuInicial extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
         modelo.setRowCount(0);
 
-        for (Arbitro arb : controllerArbitro.getArbitros()) {
+        for (Arbitro arb : controllerArbitro.getListaArbitros()) {
             Object[] fila = {
                     arb.GetNombre(),
                     arb.getInternacional(),
@@ -1116,7 +1116,17 @@ public class MenuInicial extends javax.swing.JFrame {
             controller.agregarAlalista(cAux.getJugador());
             agregarJugadorTabla();
             GuardarJugadorArchivo();
-
+            jTextFieldNombreJugador.setText("");
+            jTextFieldApellidoJugador.setText("");
+            comboboxDiaJugador.setSelectedIndex(0);
+            comboboxMesJugador.setSelectedIndex(0);
+            comboboxAnioJugador.setSelectedIndex(0);
+            comboboxNacionalidadJugador.setSelectedIndex(0);
+            jSpinnerGolesJugador.setValue(0);
+            jSpinnerAmarillaJugador.setValue(0);
+            jSpinnerRojaJugador.setValue(0);
+            jComboBoxPosicionJugador.setSelectedIndex(0);
+            jComboBoxClubJugador.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Jugador guardado exitosamente");
     }//GEN-LAST:event_jButtonGuardarJugadorActionPerformed
 
@@ -1174,8 +1184,15 @@ public class MenuInicial extends javax.swing.JFrame {
                 tarjetas = Integer.parseInt(lector.readLine());
                 internacional = lector.readLine();
 
-                controllerArbitro.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
-
+                //controllerArbitro.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetas, internacional);
+                ArbitroController cAux = new ArbitroController(new Arbitro());
+                cAux.setNombreArbitro(nombre);
+                cAux.setApellidoArbitro(apellido);
+                cAux.setFechaNacimientoArbitro(fecha.Dia, fecha.Mes, fecha.Anio);
+                cAux.setNacionalidadArbitro(nacionalidad);
+                cAux.setTarjetasSacadasArbitro(tarjetas);
+                cAux.setInternacionlArbitro(internacional);
+                controllerArbitro.setListaArbitros(cAux.getArbitro());
             }
             //guardar a la tabla
             ActualizarTablaArbitro();
@@ -1191,7 +1208,7 @@ public class MenuInicial extends javax.swing.JFrame {
         File archivoArbitro = new File("Arbitros.txt");
 
         try (FileWriter escritor = new FileWriter(archivoArbitro, false)) {
-            for (Arbitro arbitro : controllerArbitro.getArbitros()) {
+            for (Arbitro arbitro : controllerArbitro.getListaArbitros()) {
                 Fecha f = arbitro.GetFechaNacimiento();
                 escritor.write(arbitro.GetNombre() + "\n");
                 escritor.write(arbitro.GetApellido() + "\n");
@@ -1294,7 +1311,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         tabla.setRowCount(0); //Resetea la Tabla para actualizar
 
-        for(Arbitro aux : controllerArbitro.getArbitros()){
+        for(Arbitro aux : controllerArbitro.getListaArbitros()){
 
             Object[] fila = {
 
@@ -1333,6 +1350,7 @@ public class MenuInicial extends javax.swing.JFrame {
             tabla.addRow(fila); //agrego un Jugador a la lista
         }
     }
+    //Guarda Arbitro en la Lista
     private void jButtonGuardarArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarArbitroActionPerformed
         // TODO add your handling code here:
         String nombre = txtNombre.getText();
@@ -1345,37 +1363,34 @@ public class MenuInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Fecha fecha = new Fecha(dia,mes,anio);
-        
         String nacionalidad = (String) comboboxNacionalidadArbitro.getSelectedItem();
-        
         int tarjetasSacadas = (int) jSpinnerTarjetaSacadas.getValue();
+        String internacional = (String) comboboxInternacional.getSelectedItem();
         
-        String Internacional = (String) comboboxInternacional.getSelectedItem();
+        ArbitroController cAux = new ArbitroController(new Arbitro());//agregar jugador
+        cAux.setNombreArbitro(nombre);
+        cAux.setApellidoArbitro(apellido);
+        cAux.setFechaNacimientoArbitro(dia, mes, anio);
+        cAux.setNacionalidadArbitro(nacionalidad);
+        cAux.setTarjetasSacadasArbitro(tarjetasSacadas);
+        cAux.setInternacionlArbitro(internacional);
+        controllerArbitro.setListaArbitros(cAux.getArbitro());
         
-        Boolean exito = controllerArbitro.guardarArbitro(nombre, apellido, fecha, nacionalidad, tarjetasSacadas , Internacional);//carga el arbitro a la lista
         crearTablaArbitro();
         ActualizarTablaArbitro(); //Actualiza la tabla para mostrar al nuevo Arbitro
         GuardarArbitroArchivo(); //Guarda la modificacion en un archivo Arbitros.txt
         
         //resetea los valores luego de la carga
-        if (exito == true){
         txtNombre.setText("");
         txtApellido.setText("");
-        
         comboboxDiaArbitro.setSelectedIndex(0);
         comboboxMesArbitro.setSelectedIndex(0);
         comboboxAnioArbitro.setSelectedIndex(0);
-        
         comboboxNacionalidadArbitro.setSelectedIndex(0);
-        
         jSpinnerTarjetaSacadas.setValue(0);
-        
         comboboxInternacional.setSelectedIndex(0);
         
         JOptionPane.showMessageDialog(null, "Arbitro Guardado Exitosamente");
-        
-        }
     }//GEN-LAST:event_jButtonGuardarArbitroActionPerformed
 
     private void jButtonSalirArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirArbitroActionPerformed

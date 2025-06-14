@@ -194,7 +194,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         int verificador = JOptionPane.showConfirmDialog(this, "Estas seguro que quieres eliminar el Arbitro :", "Verificacion ", JOptionPane.YES_NO_OPTION) ;
         
         if(verificador == JOptionPane.YES_OPTION){
-        controller.getArbitros().remove(arbitroActual);
+        controller.getListaArbitros().remove(arbitroActual);
         menuInicial.GuardarArbitroArchivo();
         menuInicial.ActualizarTablaArbitro();
         menuInicial.crearTablaArbitro();

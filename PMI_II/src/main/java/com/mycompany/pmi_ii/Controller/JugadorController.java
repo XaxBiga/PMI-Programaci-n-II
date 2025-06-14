@@ -14,10 +14,7 @@ public class JugadorController {
     public JugadorController() {
         this.listaJugadores = new ArrayList<>();
     }
-    public JugadorController(List<Jugador> listaJugador) {
-        this.listaJugadores = listaJugador;
-        this.jugadorActual = null;
-    }
+    // Constructor para un jugador específico
     public JugadorController(Jugador jugador) {
         this.jugadorActual = jugador;
         this.listaJugadores = null;
