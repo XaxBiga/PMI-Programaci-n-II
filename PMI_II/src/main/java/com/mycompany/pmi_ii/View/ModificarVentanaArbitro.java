@@ -64,6 +64,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         jComboBoxInternacional = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Salir = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -71,6 +72,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonGuardar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jButtonGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Save.png")); // NOI18N
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,9 +80,10 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
                 jButtonGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 140, 40));
+        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 140, 40));
 
         jButtonEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jButtonEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Remove.png")); // NOI18N
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +91,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
                 jButtonEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 150, 40));
+        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 150, 40));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -144,12 +147,23 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 300, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 300, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Sistema de Modificacion de Arbitros");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
+
+        Salir.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        Salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Cancelar.png")); // NOI18N
+        Salir.setText("Cancelar");
+        Salir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,6 +206,12 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxInternacionalActionPerformed
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+    }//GEN-LAST:event_SalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +248,7 @@ public class ModificarVentanaArbitro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Salir;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JComboBox<String> jComboBoxInternacional;

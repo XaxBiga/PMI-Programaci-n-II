@@ -59,7 +59,7 @@ public class MenuInicial extends javax.swing.JFrame {
                     if (filaSeleccionada != -1) {
                         int filaModelo = jTableJugador.convertRowIndexToModel(filaSeleccionada);
 
-                        List<Jugador> jugadores = controller.getJugadores();
+                        List<Jugador> jugadores = controller.getListaJugadores();
                         Jugador jugadorSeleccionado = jugadores.get(filaModelo);
 
                         abrirVentanaModificarJugador(jugadorSeleccionado);
@@ -113,7 +113,7 @@ public class MenuInicial extends javax.swing.JFrame {
     public void tablaJugadorConGolesMayoresA(int minGoles) {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
     dtmJugador.setRowCount(0);
-    for (Jugador jug : controller.getJugadores()) {
+    for (Jugador jug : controller.getListaJugadores()) {
         if (jug.GetGoles() > minGoles) {
             Object[] fila = {
                 jug.GetClubActual(),
@@ -131,23 +131,23 @@ public class MenuInicial extends javax.swing.JFrame {
     jTableJugador2.setRowSorter(sorterJugador);
     }   
     public void crearTablaJugador() {
-    DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
-    dtmJugador.setRowCount(0);
+        DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
+        dtmJugador.setRowCount(0);
 
-    for (Jugador jug : controller.getJugadores()) {
-        Object[] fila = {
-            jug.GetClubActual(),
-            jug.GetGoles(),
-            jug.GetTarjetasRojas(),
-            jug.GetPosicion(),
-            jug.GetNombre(),
-            jug.GetApellido(),
-        };
-        dtmJugador.addRow(fila);
-        }
-    jTableJugador2.setAutoCreateRowSorter(true);
-    sorterJugador = new TableRowSorter<>(dtmJugador);
-    jTableJugador2.setRowSorter(sorterJugador);
+        for (Jugador jug : controller.getListaJugadores()) {
+            Object[] fila = {
+                jug.GetClubActual(),
+                jug.GetGoles(),
+                jug.GetTarjetasRojas(),
+                jug.GetPosicion(),
+                jug.GetNombre(),
+                jug.GetApellido(),
+            };
+            dtmJugador.addRow(fila);
+            }
+        jTableJugador2.setAutoCreateRowSorter(true);
+        sorterJugador = new TableRowSorter<>(dtmJugador);
+        jTableJugador2.setRowSorter(sorterJugador);
     }
     public void crearTablaArbitro() {
         DefaultTableModel modelo = (DefaultTableModel) jTableArbitro2.getModel();
@@ -175,7 +175,7 @@ public class MenuInicial extends javax.swing.JFrame {
         DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador2.getModel();
         dtmJugador.setRowCount(0);
         Jugador jugadorMax = null;
-        for (Jugador jug : controller.getJugadores()) {
+        for (Jugador jug : controller.getListaJugadores()) {
             if (jugadorMax == null || jug.GetTarjetasRojas() > jugadorMax.GetTarjetasRojas()) {
                 jugadorMax = jug;
             }
@@ -200,7 +200,7 @@ public class MenuInicial extends javax.swing.JFrame {
     DefaultTableModel dtmJugador = (DefaultTableModel) jTableJugador.getModel();
     dtmJugador.setRowCount(0);
 
-    for (Jugador jug : controller.getJugadores()) {
+    for (Jugador jug : controller.getListaJugadores()) {
         Object[] fila = {
             jug.GetNombre(),
             jug.GetApellido(),
@@ -243,12 +243,10 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jSpinnerGolesJugador = new javax.swing.JSpinner();
-        jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -259,6 +257,8 @@ public class MenuInicial extends javax.swing.JFrame {
         comboboxNacionalidadJugador = new javax.swing.JComboBox<>();
         jComboBoxClubJugador = new javax.swing.JComboBox<>();
         jComboBoxPosicionJugador = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableJugador = new javax.swing.JTable();
@@ -344,14 +344,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonSalir.setBackground(new java.awt.Color(204, 204, 204));
         jButtonSalir.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonSalir.setForeground(new java.awt.Color(102, 102, 102));
-        jButtonSalir.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Salir.png")); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 100, 30));
+        jPanel1.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 120, 40));
 
         jTextFieldApellidoJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jTextFieldApellidoJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
@@ -365,13 +365,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonGuardarJugador.setBackground(new java.awt.Color(0, 153, 153));
         jButtonGuardarJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonGuardarJugador.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardarJugador.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Save.png")); // NOI18N
         jButtonGuardarJugador.setText("Cargar Jugador");
         jButtonGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarJugadorActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 180, 30));
+        jPanel1.add(jButtonGuardarJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 190, 40));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
@@ -429,11 +430,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jLabel17.setText("Año");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Nacionalidad ");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
-
         jLabel19.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Goles");
@@ -452,11 +448,6 @@ public class MenuInicial extends javax.swing.JFrame {
         jSpinnerGolesJugador.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jSpinnerGolesJugador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         jPanel1.add(jSpinnerGolesJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 98, -1));
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Club");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -512,20 +503,36 @@ public class MenuInicial extends javax.swing.JFrame {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Nacionalidad ");
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Club");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
                         .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinnerAmarillaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jSpinnerAmarillaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(35, 35, 35)
+                                .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(75, 75, 75))))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
@@ -546,10 +553,14 @@ public class MenuInicial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jTextFieldNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboboxNacionalidadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
                 .addGap(18, 18, 18)
-                .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxClubJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
                 .addGap(18, 18, 18)
                 .addComponent(jComboBoxPosicionJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
@@ -611,7 +622,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Jugador", jPanel1);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Fira Sans", 0, 13), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -645,18 +656,19 @@ public class MenuInicial extends javax.swing.JFrame {
         jButtonSalirArbitro.setBackground(new java.awt.Color(204, 204, 204));
         jButtonSalirArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonSalirArbitro.setForeground(new java.awt.Color(102, 102, 102));
-        jButtonSalirArbitro.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
+        jButtonSalirArbitro.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Salir.png")); // NOI18N
         jButtonSalirArbitro.setText("Salir");
         jButtonSalirArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirArbitroActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSalirArbitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 100, 30));
+        jPanel2.add(jButtonSalirArbitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 120, 40));
 
         jButtonGuardarArbitro.setBackground(new java.awt.Color(0, 153, 153));
         jButtonGuardarArbitro.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButtonGuardarArbitro.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardarArbitro.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Save.png")); // NOI18N
         jButtonGuardarArbitro.setText("Cargar Arbitro");
         jButtonGuardarArbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -936,14 +948,14 @@ public class MenuInicial extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon("/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/Imagenes/Cancelar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\frana\\OneDrive\\Escritorio\\PMI V3.3 Diseño\\PMI-Programaci-n-II\\PMI_II\\src\\main\\java\\Imagenes\\Salir.png")); // NOI18N
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 600, 90, 40));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 600, 120, 40));
 
         jLabel31.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 102, 102));
@@ -1044,9 +1056,8 @@ public class MenuInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1365, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1078,38 +1089,35 @@ public class MenuInicial extends javax.swing.JFrame {
     
     //Guarda Jugador en la Lista
     private void jButtonGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarJugadorActionPerformed
-        String nombre = jTextFieldNombreJugador.getText();
-        String apellido = jTextFieldApellidoJugador.getText();
-        int dia = Integer.parseInt((String) comboboxDiaJugador.getSelectedItem());
-        int mes = Integer.parseInt((String) comboboxMesJugador.getSelectedItem());
-        int anio = Integer.parseInt((String) comboboxAnioJugador.getSelectedItem());
-        Fecha fecha = new Fecha(dia, mes, anio);
-        
-        String nacionalidadJugador = (String) comboboxNacionalidadJugador.getSelectedItem();
-        int goles = (int) jSpinnerGolesJugador.getValue();
-        int amarillas = (int) jSpinnerAmarillaJugador.getValue();
-        int roja = (int) jSpinnerRojaJugador.getValue();
-        String club = (String) jComboBoxClubJugador.getSelectedItem();
-        String posicion = (String) jComboBoxPosicionJugador.getSelectedItem();
-        
-        boolean exito = controller.guardarJugador(nombre, apellido, fecha, nacionalidadJugador, club, posicion, goles, amarillas, roja);
-        
-        agregarJugadorTabla();
-        crearTablaJugador();
-        GuardarJugadorArchivo();
-        if (exito == true){
-            jTextFieldNombreJugador.setText("");
-            jTextFieldApellidoJugador.setText("");
-            comboboxDiaJugador.setSelectedIndex(0);
-            comboboxMesJugador.setSelectedIndex(0);
-            comboboxAnioJugador.setSelectedIndex(0);
-            comboboxNacionalidadJugador.setSelectedIndex(0);
-            jSpinnerGolesJugador.setValue(0);
-            jSpinnerAmarillaJugador.setValue(0);
-            jSpinnerRojaJugador.setValue(0);
-            jComboBoxPosicionJugador.setSelectedIndex(0);
-            jComboBoxClubJugador.setSelectedIndex(0);
-        }
+            String nombre = jTextFieldNombreJugador.getText();
+            String apellido = jTextFieldApellidoJugador.getText();
+            int dia = Integer.parseInt((String) comboboxDiaJugador.getSelectedItem());
+            int mes = Integer.parseInt((String) comboboxMesJugador.getSelectedItem());
+            int anio = Integer.parseInt((String) comboboxAnioJugador.getSelectedItem());
+            String nacionalidadJugador = (String) comboboxNacionalidadJugador.getSelectedItem();
+            int goles = (int) jSpinnerGolesJugador.getValue();
+            int amarillas = (int) jSpinnerAmarillaJugador.getValue();
+            int roja = (int) jSpinnerRojaJugador.getValue();
+            String club = (String) jComboBoxClubJugador.getSelectedItem();
+            String posicion = (String) jComboBoxPosicionJugador.getSelectedItem();
+            
+            JugadorController cAux = new JugadorController (new Jugador());
+            
+            cAux.set_nombreJug(nombre);
+            cAux.set_apellidoJug(apellido);
+            cAux.set_FechanacimientoJug(dia, mes, anio);
+            cAux.set_NacionalidadJug(nacionalidadJugador);
+            cAux.set_GolesJug(goles);
+            cAux.set_TarjetasAmarillasJug(amarillas);
+            cAux.set_TarjetasRojasJug(roja);
+            cAux.set_ClubActualJug(club);
+            cAux.set_PosicionJug(posicion);
+            
+            controller.agregarAlalista(cAux.getJugador());
+            agregarJugadorTabla();
+            GuardarJugadorArchivo();
+
+            JOptionPane.showMessageDialog(null, "Jugador guardado exitosamente");
     }//GEN-LAST:event_jButtonGuardarJugadorActionPerformed
 
     private void jTextFieldNombreJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreJugadorActionPerformed
@@ -1206,7 +1214,7 @@ public class MenuInicial extends javax.swing.JFrame {
     public void GuardarJugadorArchivo(){
         File ArchivoJugador = new File("Jugadores");
         try (FileWriter escritor = new FileWriter(ArchivoJugador, false)) {
-            for (Jugador jug : controller.getJugadores()) {
+            for (Jugador jug : controller.getListaJugadores()) {
                 Fecha f = jug.GetFechaNacimiento();
                 escritor.write(jug.GetNombre() + "\n");
                 escritor.write(jug.GetApellido() + "\n");
@@ -1230,32 +1238,45 @@ public class MenuInicial extends javax.swing.JFrame {
     private void CargarJugadorArchivo(){
         File archivo = new File("Jugadores");
 
+        if (!archivo.exists()) {
+            JOptionPane.showMessageDialog(null, "El archivo 'Jugadores' no existe", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
             String nombre, apellido, nacionalidad, club, posicion;
-            Fecha fecha = new Fecha();
             int goles, amarillas, rojas;
 
             while ((nombre = lector.readLine()) != null) {
                 apellido = lector.readLine();
-                fecha.SetDia(Integer.parseInt(lector.readLine()));
-                fecha.SetMes(Integer.parseInt(lector.readLine()));
-                fecha.SetAnio(Integer.parseInt(lector.readLine()));
+
+                int dia = Integer.parseInt(lector.readLine());
+                int mes = Integer.parseInt(lector.readLine());
+                int anio = Integer.parseInt(lector.readLine());
+                Fecha fecha = new Fecha(dia, mes, anio);
+
                 club = lector.readLine();
                 posicion = lector.readLine();
                 nacionalidad = lector.readLine();
+
                 goles = Integer.parseInt(lector.readLine());
                 amarillas = Integer.parseInt(lector.readLine());
                 rojas = Integer.parseInt(lector.readLine());
 
+                Jugador jugador = new Jugador();
+                jugador.SetNombre(nombre);
+                jugador.SetApellido(apellido);
+                jugador.SetFechaNacimiento(fecha);
+                jugador.SetClubActual(club);
+                jugador.SetPosicion(posicion);
+                jugador.SetNacionalidad(nacionalidad);
+                jugador.SetGoles(goles);
+                jugador.SetTarjetasAmarillas(amarillas);
+                jugador.SetTarjetasRojas(rojas);
 
-                controller.guardarJugador(
-                        nombre, apellido, fecha,
-                        nacionalidad, club, posicion,
-                        goles, amarillas, rojas
-                );
+                controller.getListaJugadores().add(jugador);
             }
 
-            // actualiza la tabla
             ActualizarTablaJugador();
 
         } catch (IOException | NumberFormatException e) {
@@ -1295,7 +1316,7 @@ public class MenuInicial extends javax.swing.JFrame {
 
         tabla.setRowCount(0); //Resetea la Tabla para actualizar
 
-        for(Jugador jug : controller.getJugadores()){
+        for(Jugador jug : controller.getListaJugadores()){
 
             Object[] fila = {
 
@@ -1351,6 +1372,9 @@ public class MenuInicial extends javax.swing.JFrame {
         jSpinnerTarjetaSacadas.setValue(0);
         
         comboboxInternacional.setSelectedIndex(0);
+        
+        JOptionPane.showMessageDialog(null, "Arbitro Guardado Exitosamente");
+        
         }
     }//GEN-LAST:event_jButtonGuardarArbitroActionPerformed
 

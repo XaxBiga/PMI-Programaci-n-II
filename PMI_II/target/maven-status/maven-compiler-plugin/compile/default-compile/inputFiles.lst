@@ -1,10 +1,10 @@
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/ArbitroController.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/JugadorController.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Arbitro.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Fecha.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Jugador.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Persona.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/PMI_II.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/MenuInicial.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaArbitro.java
-/home/gqiroga/Documentos/Programación II UNSL/PMI 09-06-2025/PMI V2.2 Diseño-20250609T230149Z-1-001/PMI V2.2 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaJugador.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/ArbitroController.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Controller/JugadorController.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Arbitro.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Fecha.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Jugador.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/Model/Persona.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/PMI_II.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/MenuInicial.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaArbitro.java
+/home/gqiroga/Documentos/Programación II UNSL/PMI V3.3 Diseño/PMI-Programaci-n-II/PMI_II/src/main/java/com/mycompany/pmi_ii/View/ModificarVentanaJugador.java

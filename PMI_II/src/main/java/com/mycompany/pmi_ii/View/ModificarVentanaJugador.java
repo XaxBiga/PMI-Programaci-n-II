@@ -63,6 +63,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,7 +76,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
                 jButtonGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 120, 40));
+        getContentPane().add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 120, 40));
 
         jButtonEliminar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jButtonEliminar.setText("Eliminar");
@@ -85,7 +86,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
                 jButtonEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 130, 40));
+        getContentPane().add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 130, 40));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -93,6 +94,11 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jComboBoxPosicion.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jComboBoxPosicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Arquero", "Defensor", "MedioCampista", "Delantero" }));
         jComboBoxPosicion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
+        jComboBoxPosicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPosicionActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,12 +153,22 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 290, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 290, 150));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Sistema de Modificacion de Jugadores");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+
+        Cancelar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        Cancelar.setText("Cancelar");
+        Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 120, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,7 +185,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         jugadorActual.SetGoles(goles);
         jugadorActual.SetTarjetasAmarillas(tarjetasAmarillas);
 
-
+        
         controller.modificarJugador(jugadorActual);
         
         menuInicial.GuardarJugadorArchivo();
@@ -195,7 +211,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
             return;
         }
         
-        controller.getJugadores().remove(jugadorActual);
+        controller.getListaJugadores().remove(jugadorActual);
         menuInicial.GuardarJugadorArchivo();
         menuInicial.ActualizarTablaJugador();
         menuInicial.crearTablaJugador();
@@ -203,6 +219,15 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
         
     }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelarActionPerformed
+
+    private void jComboBoxPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPosicionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPosicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +266,7 @@ public class ModificarVentanaJugador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JComboBox<String> jComboBoxPosicion;

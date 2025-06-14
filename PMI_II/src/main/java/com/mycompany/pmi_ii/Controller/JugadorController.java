@@ -4,85 +4,97 @@ import com.mycompany.pmi_ii.Model.Fecha;
 import com.mycompany.pmi_ii.Model.Jugador;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class JugadorController {
 
-    private List<Jugador> jugadores;
-
+    private final List<Jugador> listaJugadores;
+    
+    private Jugador jugadorActual;
+    
     public JugadorController() {
-        jugadores = new ArrayList<>();
+        this.listaJugadores = new ArrayList<>();
     }
-    public boolean guardarJugador(String nombre, String apellido, Fecha fecha, String nacionalidad,
-                                String club, String posicion, int goles, int amarilla, int roja) {
-
-        if (nombre == null || nombre.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        if (apellido == null || apellido.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El apellido no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        //Control para Jugador Repetido
-        if (JugadorRepetido(nombre,apellido) == true){
-            JOptionPane.showMessageDialog(null, "El Jugador Ingresado ya Existe en la Lista.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (fecha == null || fecha.Dia == 0 || fecha.Mes == 0 || fecha.Anio == 0) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fecha válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        if (nacionalidad == null || nacionalidad.equals("-") || nacionalidad.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una nacionalidad.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        if (club == null || club.equals("-") || club.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un club.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        if (contarJugadoresEnClub(club) >= 7) {
-            JOptionPane.showMessageDialog(null,
-                "El club " + club + " ya tiene 7 jugadores. No se pueden agregar más.",
-                "Límite de jugadores", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-
-        if (posicion == null || posicion.equals("-") || posicion.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una posición.", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        
-        try {
-            Jugador nuevoJugador = new Jugador();
-            nuevoJugador.SetNombre(nombre);
-            nuevoJugador.SetApellido(apellido);
-            nuevoJugador.SetFechaNacimiento(fecha);
-            nuevoJugador.SetNacionalidad(nacionalidad);
-            nuevoJugador.SetClubActual(club);
-            nuevoJugador.SetPosicion(posicion);
-            nuevoJugador.SetGoles(goles);
-            nuevoJugador.SetTarjetasAmarillas(amarilla);
-            nuevoJugador.SetTarjetasRojas(roja);
-            jugadores.add(nuevoJugador);
-            System.out.println("Jugador guardado: " + nombre + " " + apellido);
-            return true;
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null,
-                "Error al guardar el jugador: " + e.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+    public JugadorController(List<Jugador> listaJugador) {
+        this.listaJugadores = listaJugador;
+        this.jugadorActual = null;
+    }
+    public JugadorController(Jugador jugador) {
+        this.jugadorActual = jugador;
+        this.listaJugadores = null;
+    }
+    public void nuevoJugador() {
+        this.jugadorActual = new Jugador();
+    }
+    
+    public Jugador getJugador(){
+        return jugadorActual;
+    }
+    public void agregarAlalista(Jugador j){
+        listaJugadores.add(j);
+    }
+    public void set_nombreJug(String nombre){
+        jugadorActual.SetNombre(nombre);
+    }
+    public void set_apellidoJug(String apellido){
+        jugadorActual.SetApellido(apellido);
+    }
+    public void set_FechanacimientoJug(int dia, int mes, int año){
+        jugadorActual.SetFechaNacimiento(new Fecha(dia, mes, año));
+    }
+    public void set_NacionalidadJug(String nacionalidad){
+        jugadorActual.SetNacionalidad(nacionalidad);
+    }
+    public void set_ClubActualJug(String ClubActual){
+        jugadorActual.SetClubActual(ClubActual);
+    }
+    public void set_PosicionJug(String Posicion){
+        jugadorActual.SetPosicion(Posicion);
+    }
+    public void set_GolesJug(int goles){
+        jugadorActual.SetGoles(goles);
+    }
+    public void set_TarjetasAmarillasJug(int tarjetasA){
+        jugadorActual.SetTarjetasAmarillas(tarjetasA);
+    }
+    public void set_TarjetasRojasJug(int tarjetasR){
+        jugadorActual.SetTarjetasRojas(tarjetasR);
+    }
+    //hacer getter chi
+    public String get_nombreJug(){
+        return jugadorActual.GetNombre();
+    }
+    public String get_apellidoJug(){
+        return jugadorActual.GetApellido();
+    }
+    public Fecha get_FechanacimientoJug(){
+        return jugadorActual.GetFechaNacimiento();
+    }
+    public String get_NacionalidadJug(){
+        return jugadorActual.GetNacionalidad();
+    }
+    public String get_ClubActualJug(){
+        return jugadorActual.GetClubActual();
+    }
+    public String get_PosicionJug(){
+        return jugadorActual.GetPosicion();
+    }
+    public int get_GolesJug(){
+        return jugadorActual.GetGoles();
+    }
+    public int get_TarjetasAmarillasJug(){
+        return jugadorActual.GetTarjetasAmarillas();
+    }
+    public int get_TarjetasRojasJug(){
+        return jugadorActual.GetTarjetasRojas();
+    }
+    public List<Jugador> getListaJugadores() {
+        return listaJugadores;
     }
 
     //Metodo para Verificar si el Jugador Ya esta en la lista
     public boolean JugadorRepetido(String nombre , String apellido){
     
-        for(Jugador aux : jugadores){
+        for(Jugador aux : listaJugadores){
             
             if(aux.GetNombre().equalsIgnoreCase(nombre) && aux.GetApellido().equalsIgnoreCase(apellido)){
                 
@@ -95,16 +107,12 @@ public class JugadorController {
     
     public int contarJugadoresEnClub(String club) {
         int contador = 0;
-        for (Jugador j : jugadores) {
+        for (Jugador j : listaJugadores) {
             if (j.GetClubActual().equals(club)) {
                 contador++;
             }
         }
         return contador;
-    }
-
-    public List<Jugador> getJugadores() {
-        return jugadores;
     }
 
     public void modificarJugador(Jugador jugadorModificado) {
